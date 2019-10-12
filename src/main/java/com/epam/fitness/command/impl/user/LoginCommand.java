@@ -37,7 +37,7 @@ public class LoginCommand implements Command {
             User user = optionalUser.get();
             session.setAttribute(USER_ATTRIBUTE, user);
             return CommandResult.redirect(HOME_PAGE_URL);
-        } else{
+        } else {
             session.setAttribute(LOGIN_FAIL_ATTRIBUTE, true);
             return CommandResult.redirect(LOGIN_PAGE_URL);
         }
