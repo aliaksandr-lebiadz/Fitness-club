@@ -14,12 +14,6 @@ public class SetLocaleCommand implements Command {
     private static final String LOCALE = "locale";
     private static final String COUNTRY = "country";
 
-    private CurrentPageGetter currentPageGetter;
-
-    public SetLocaleCommand(CurrentPageGetter currentPageGetter){
-        this.currentPageGetter = currentPageGetter;
-    }
-
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) {
         String localeValue = request.getParameter(LOCALE);
@@ -27,7 +21,7 @@ public class SetLocaleCommand implements Command {
         Locale locale = new Locale(localeValue, country);
         HttpSession session = request.getSession();
         session.setAttribute(LOCALE, locale);
-        String page = currentPageGetter.getCurrentPage(request);
+        String page = CurrentPageGetter.getCurrentPage(request);
         return CommandResult.redirect(page);
     }
 }
