@@ -144,9 +144,7 @@ public class CommandFactoryImpl implements CommandFactory {
                 command =  new LogOutCommand();
                 break;
             case SET_LOCALE_COMMAND:
-                command = new SetLocaleCommand(
-                        new CurrentPageGetter()
-                );
+                command = new SetLocaleCommand();
                 break;
             default:
                 throw new IllegalArgumentException("Illegal command: " + commandValue);
