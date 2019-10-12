@@ -63,7 +63,7 @@ public class CommandFactoryImpl implements CommandFactory {
         switch (commandValue){
             case LOGIN_COMMAND:
                 command =  new LoginCommand(
-                        new UserServiceImpl(factory),
+                        new UserServiceImpl(factory)
                 );
                 break;
             case SHOW_ORDER_PAGE_COMMAND:
