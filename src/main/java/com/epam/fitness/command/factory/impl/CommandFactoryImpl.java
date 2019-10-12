@@ -63,7 +63,7 @@ public class CommandFactoryImpl implements CommandFactory {
         switch (commandValue){
             case LOGIN_COMMAND:
                 command =  new LoginCommand(
-                        getUserService()
+                        new UserServiceImpl(factory),
                 );
                 break;
             case SHOW_ORDER_PAGE_COMMAND:
@@ -91,8 +91,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case SHOW_TRAINER_CLIENTS_COMMAND:
                 command = new ShowTrainerClientsCommand(
-                        getUserService(),
-                        getExerciseService()
+                        new UserServiceImpl(factory),
+                        new ExerciseServiceImpl(factory)
                 );
                 break;
             case SHOW_TRAINER_CLIENT_ORDERS_COMMAND:
@@ -107,18 +107,18 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case SHOW_ASSIGNMENTS_COMMAND:
                 command = new ShowAssignmentsCommand(
-                        getAssignmentService(),
-                        getExerciseService()
+                        new AssignmentServiceImpl(factory),
+                        new ExerciseServiceImpl(factory)
                 );
                 break;
             case CHANGE_ASSIGNMENT_STATUS_COMMAND:
                 command = new ChangeAssignmentStatusCommand(
-                        getAssignmentService()
+                        new AssignmentServiceImpl(factory)
                 );
                 break;
             case CHANGE_ASSIGNMENT_COMMAND:
                 command = new ChangeAssignmentCommand(
-                        getAssignmentService(),
+                        new AssignmentServiceImpl(factory),
                         new AssignmentValidator()
                 );
                 break;
@@ -136,7 +136,7 @@ public class CommandFactoryImpl implements CommandFactory {
                 break;
             case SET_USER_DISCOUNT_COMMAND:
                 command = new SetUserDiscountCommand(
-                        getUserService(),
+                        new UserServiceImpl(factory),
                         new UserValidator()
                 );
                 break;
@@ -152,21 +152,9 @@ public class CommandFactoryImpl implements CommandFactory {
         return command;
     }
 
-    private UserService getUserService(){
-        return new UserServiceImpl(factory);
-    }
-
     private OrderService getOrderService(){
         OrderUtils orderUtils = new OrderUtils();
         return new OrderServiceImpl(factory, orderUtils);
-    }
-
-    private ExerciseService getExerciseService(){
-        return new ExerciseServiceImpl(factory);
-    }
-
-    private AssignmentService getAssignmentService(){
-        return new AssignmentServiceImpl(factory);
     }
 
 }
