@@ -27,10 +27,12 @@ public class CommandAccessController {
             case SHOW_ORDER_PAGE_COMMAND:
             case SHOW_ORDERS_COMMAND:
             case SEND_FEEDBACK_COMMAND:
-            case SHOW_ASSIGNMENTS_COMMAND:
             case CHANGE_ASSIGNMENT_COMMAND:
             case CHANGE_ASSIGNMENT_STATUS_COMMAND:
                 return role == UserRole.CLIENT;
+
+            case SHOW_ASSIGNMENTS_COMMAND:
+                return role == UserRole.CLIENT || role == UserRole.TRAINER;
 
             default:
                 return true;
