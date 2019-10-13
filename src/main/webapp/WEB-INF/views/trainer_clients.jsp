@@ -11,6 +11,7 @@
     <fmt:message key="clients_list.title" var="clients_list_title"/>
     <fmt:message key="table.title" var="table_title"/>
     <fmt:message key="table.button.add_assignment" var="add_assignment_button"/>
+    <fmt:message key="table.button.see_assignments" var="see_assignments_button"/>
     <fmt:message key="table.button.nutrition" var="nutrition_button"/>
     <fmt:message key="assignment_popup.title" var="assignment_popup_title"/>
     <fmt:message key="assignment_popup.label.workout_date" var="workout_date"/>
@@ -89,14 +90,20 @@
                     </display:column>
                 </display:table>
                 <hr>
-                <button type="button" class="custom-button" id="nutrition-button"
-                        onclick="showPopUp('#nutrition-popup')">
-                    ${nutrition_button}
-                </button>
-                <button type="button" class="custom-button" id="assignment-button"
-                        onclick="showPopUp('#assignment-popup')">
-                    ${add_assignment_button}
-                </button>
+                <form id="assignment-form" action="controller?command=showAssignments" method="post">
+                    <button type="button" class="custom-button" id="nutrition-button"
+                            onclick="showPopUp('#nutrition-popup')">
+                            ${nutrition_button}
+                    </button>
+                    <button type="button" class="custom-button" id="assignment-button"
+                            onclick="showPopUp('#assignment-popup')">
+                            ${add_assignment_button}
+                    </button>
+                    <input type="button" class="custom-button" id="see-assignments-button"
+                           value="${see_assignments_button}"
+                           onclick="if($('.hidden-id').val() !== ''){ $('#assignment-form').submit(); }"/>
+                    <input type="hidden" name="order_id" class="hidden-id"/>
+                </form>
             </div>
             <div class="popup" id="nutrition-popup">
                 <div id="nutrition-popup-header">
