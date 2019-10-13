@@ -71,7 +71,7 @@
                 <input type="text" name="valid_thru" id="valid-thru-input" placeholder="${validity}"
                        pattern="((0[1-9])|(1[0-2]))/\d{2}" required/>
                 <label for="cvv-input"></label>
-                <input type="text" name="cvv" id="cvv-input" placeholder="${cvv}"
+                <input type="password" name="cvv" id="cvv-input" placeholder="${cvv}"
                        pattern="\d{3}" required/>
                 <input type="hidden" name="membership_select" class="hidden-id"/>
                 <input type="submit" id="purchase-button" value="${confirm_button}"/>
