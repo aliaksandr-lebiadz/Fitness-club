@@ -42,6 +42,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/additional/select.css">
         <script src="${pageContext.request.contextPath}/static/jquery-2.0.2.min.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/table_select.js"></script>
+        <script src="${pageContext.request.contextPath}/scripts/transfer.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/popup.js"></script>
 
     </head>
@@ -66,18 +67,18 @@
                     <c:if test="${not empty nutrition_type}">
                         <span id="nutrition-type">${nutrition_type_msg} ${nutrition_type}</span>
                     </c:if>
-                    <display:table class="display-table" name="sessionScope.assignments" uid="row" pagesize="5" export="false">
+                    <display:table class="display-table" name="sessionScope.assignments" uid="assignment" pagesize="5" export="false">
                         <display:column property="id" class="hidden" headerClass="hidden"/>
                         <display:column title="${workout_date}">
-                            <fmt:formatDate value="${row.workoutDate}"/>
+                            <fmt:formatDate value="${assignment.workoutDate}"/>
                         </display:column>
                         <display:column title="${exercise}">
-                            ${row.exercise.name}
+                            ${assignment.exercise.name}
                         </display:column>
                         <display:column property="amountOfSets" title="${amount_of_sets}"/>
                         <display:column property="amountOfReps" title="${amount_of_reps}"/>
                         <display:column title="${status}">
-                            <fc:status-localizer>${row.status}</fc:status-localizer>
+                            <fc:status-localizer>${assignment.status}</fc:status-localizer>
                         </display:column>
                         <display:setProperty name="paging.banner.items_name" value="${pages_name}"/>
                     </display:table>
