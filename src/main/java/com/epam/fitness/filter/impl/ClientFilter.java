@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName = "clientFilter", urlPatterns = {"/getMembership", "/orders", "/assignments"})
+@WebFilter(filterName = "clientFilter", urlPatterns = {"/getMembership", "/orders"})
 public class ClientFilter extends AbstractFilter {
 
     @Override
