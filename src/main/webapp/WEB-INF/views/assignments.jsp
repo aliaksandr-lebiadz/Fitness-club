@@ -9,7 +9,9 @@
 <fmt:bundle basename="pages_content" prefix="assignments.">
     <fmt:message key="title" var="title"/>
     <fmt:message key="zero_assignments.message" var="zero_assignments"/>
+    <fmt:message key="zero_assignments.trainer.message" var="zero_assignments_by_trainer"/>
     <fmt:message key="zero_assignments.button" var="orders_button"/>
+    <fmt:message key="zero_assignments.trainer.button" var="clients_button"/>
     <fmt:message key="nutrition_type" var="nutrition_type_msg"/>
     <fmt:message key="table.exercise" var="exercise"/>
     <fmt:message key="table.amount_of_sets" var="amount_of_sets"/>
@@ -54,10 +56,18 @@
 
         <c:if test="${fn:length(sessionScope.assignments) eq 0}">
             <div id="no-assignments-container">
-                <p>${zero_assignments}</p>
-                <form id="no-assignments-form" action="controller?command=showOrders" method="post">
-                    <input type="submit" class="custom-button" id="orders-button" value="${orders_button}"/>
-                </form>
+                <c:if test="${sessionScope.user.role eq 'CLIENT'}">
+                    <p>${zero_assignments}</p>
+                    <form id="no-assignments-form" action="controller?command=showOrders" method="post">
+                        <input type="submit" class="custom-button" id="orders-button" value="${orders_button}"/>
+                    </form>
+                </c:if>
+                <c:if test="${sessionScope.user.role ne 'CLIENT'}">
+                    <p>${zero_assignments_by_trainer}</p>
+                    <form id="no-assignments-form" action="controller?command=showTrainerClients" method="post">
+                        <input type="submit" class="custom-button" id="clients-button" value="${clients_button}"/>
+                    </form>
+                </c:if>
             </div>
         </c:if>
         <c:if test="${fn:length(sessionScope.assignments) ne 0}">
@@ -85,12 +95,17 @@
                     <hr>
                     <input type="hidden" name="assignment_id" class="hidden-id"/>
                     <input type="hidden" name="assignment_action" id="hidden-action"/>
-                    <input type="submit" class="custom-button action-button" value="${accept_button}"
-                           onclick="$('#hidden-action').val('accept')">
+                    <c:if test="${sessionScope.user.role eq 'CLIENT'}">
+                        <input type="submit" class="custom-button action-button" value="${accept_button}"
+                               onclick="$('#hidden-action').val('accept');
+                               if($('.hidden-id').val() !== ''){ $('#assignment-form').submit();}">
+                    </c:if>
                     <input type="button" class="custom-button action-button" value="${change_button}"
                            onclick="showPopUp('#change-assignment-popup')">
-                    <input type="submit" class="custom-button action-button" value="${cancel_button}"
-                            onclick="$('#hidden-action').val('cancel')"/>
+                    <input type="button" class="custom-button action-button" value="${cancel_button}"
+                            onclick="
+                            $('#hidden-action').val('cancel');
+                            if($('.hidden-id').val() !== ''){ $('#assignment-form').submit(); }"/>
                 </form>
             </div>
             <div class="popup" id="change-assignment-popup">
