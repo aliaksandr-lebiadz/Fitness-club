@@ -39,8 +39,8 @@ label{
 
 #orders-container{
     position: absolute;
-    width: 46%;
-    min-width: 600px;
+    width: 54%;
+    min-width: 690px;
     min-height: 455px;
     height: 70%;
     top: 18%;
@@ -87,4 +87,8 @@ label{
 #assign-nutrition-type-button{
     margin-top: 250px;
     width: 100px;
+}
+
+#see-assignments-button{
+    margin-left: 20px;
 }
