@@ -6,6 +6,7 @@ import com.epam.fitness.exception.DaoException;
 import com.epam.fitness.dao.api.UserDao;
 import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.service.api.UserService;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> login(String email, String password) throws ServiceException {
         try {
-            return userDao.findUserByEmailAndPassword(email, password);
+            String md5Password = DigestUtils.md5Hex(password);
+            return userDao.findUserByEmailAndPassword(email, md5Password);
         } catch (DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
         }
