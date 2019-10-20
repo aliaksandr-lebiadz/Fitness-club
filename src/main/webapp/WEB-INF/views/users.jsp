@@ -10,7 +10,6 @@
     <fmt:message key="title" var="title"/>
     <fmt:message key="table.name" var="name"/>
     <fmt:message key="table.email" var="email"/>
-    <fmt:message key="table.password" var="password"/>
     <fmt:message key="table.discount" var="discount"/>
     <fmt:message key="table.pages.name" var="pages_name"/>
     <fmt:message key="button.set_discount" var="set_discount_button"/>
@@ -29,7 +28,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>${title}</title>
-        <link rel="icon" href="${pageContext.request.contextPath}/images/title_icon.png"/>
+        <link rel="icon" href="${pageContext.request.contextPath}/icons/title_icon.png"/>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/additional/display_table.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/additional/disable_div.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main/users.css">
@@ -52,7 +51,6 @@
                         ${row.firstName} ${row.secondName}
                     </display:column>
                     <display:column property="email" title="${email}"/>
-                    <display:column property="password" title="${password}"/>
                     <display:column property="discount" title="${discount}"/>
                     <display:setProperty name="paging.banner.items_name" value="${pages_name}"/>
                 </display:table>
