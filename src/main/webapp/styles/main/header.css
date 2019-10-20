@@ -1,19 +1,60 @@
 @media screen and (max-width:768px){
     body #header{
         height: 65px;
+        font-size: 10px;
+    }
+    body .simple{
+        margin-right: 3px;
+    }
+    body .switcher_link{
+        margin-right: 3px;
+    }
+    body #dropdown{
+        margin-right: -20px;
+    }
+    body #dropdown a{
+        padding: 8px;
     }
     body #logo{
-        margin-left: 30px;
+        margin-left: 10px;
         padding: 7px;
         font-size: 16px;
     }
 }
 @media screen and (max-width:480px){
     body #header{
-        height: 50px;
+        font-size: 8px;
+        height: 80px;
+    }
+    body #navigation{
+        height: 55px;
+        width: 140px;
+    }
+    body .navigation_link{
+        padding-bottom: 3px;
+    }
+    body .switcher_link{
+        position: absolute;
+        bottom: 5px;
+        right: 40px;
+    }
+    body .simple{
+        display: inline-block;
+        margin-right: 20px;
+    }
+    body #dropdown{
+        margin-top: 25px;
+        margin-right: 10px;
+    }
+    body #dropdown a{
+        padding: 7px;
+    }
+    body .simple:after{
+        height: 1px;
     }
     body #logo{
-        margin-left: 20px;
+        margin-bottom: 30px;
+        margin-left: 10px;
         padding: 5px;
         font-size: 14px;
     }
