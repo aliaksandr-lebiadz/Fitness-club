@@ -95,9 +95,7 @@ public class ConnectionPool {
      */
     public void close() throws ConnectionPoolException {
         try{
-            for(ProxyConnection givenConnection : givenConnections){
-                givenConnection.close();
-            }
+            givenConnections.forEach(ProxyConnection::close);
             for(ProxyConnection connection : connections){
                 connection.terminate();
             }
