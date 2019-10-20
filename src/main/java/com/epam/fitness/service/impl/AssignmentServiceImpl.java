@@ -52,16 +52,13 @@ public class AssignmentServiceImpl implements AssignmentService {
             if(orderOptional.isPresent()){
                 Order order = orderOptional.get();
                 NutritionType nutritionType = order.getNutritionType();
-                if(nutritionType != null){
-                    return nutritionType.getValue();
-                }
+                return nutritionType != null ? nutritionType.getValue() : null;
             } else{
                 throw new ServiceException("Order with id " + orderId + " not found!");
             }
         } catch (DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
         }
-        return null;
     }
 
     @Override
