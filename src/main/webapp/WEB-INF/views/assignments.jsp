@@ -30,6 +30,11 @@
     <fmt:message key="changed" var="changed_status"/>
     <fmt:message key="canceled" var="canceled_status"/>
 </fmt:bundle>
+<fmt:bundle basename="pages_content" prefix="nutrition_type.">
+    <fmt:message key="low_calorie" var="low_calorie_nutrition"/>
+    <fmt:message key="medium_calorie" var="medium_calorie_nutrition"/>
+    <fmt:message key="high_calorie" var="high_calorie_nutrition"/>
+</fmt:bundle>
 
 <!DOCTYPE html>
 <html lang="${sessionScope.locale}">
@@ -75,7 +80,9 @@
                 <form class="check-submit-form" id="assignment-form" action="controller?command=changeAssignmentStatus" method="post">
                     <c:set var="nutrition_type" scope="page" value="${sessionScope.nutrition_type}"/>
                     <c:if test="${not empty nutrition_type}">
-                        <span id="nutrition-type">${nutrition_type_msg} ${nutrition_type}</span>
+                        <span id="nutrition-type">
+                                ${nutrition_type_msg} <fc:nutrition-type-localizer>${nutrition_type}</fc:nutrition-type-localizer>
+                        </span>
                     </c:if>
                     <display:table class="display-table" name="sessionScope.assignments" uid="assignment" pagesize="5" export="false">
                         <display:column property="id" class="hidden" headerClass="hidden"/>
