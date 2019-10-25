@@ -1,8 +1,8 @@
 package com.epam.fitness.builder.impl;
 
 import com.epam.fitness.builder.Builder;
-import com.epam.fitness.entity.NutritionType;
-import com.epam.fitness.entity.Order;
+import com.epam.fitness.entity.order.NutritionType;
+import com.epam.fitness.entity.order.Order;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;

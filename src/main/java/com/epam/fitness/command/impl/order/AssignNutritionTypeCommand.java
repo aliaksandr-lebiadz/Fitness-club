@@ -2,7 +2,7 @@ package com.epam.fitness.command.impl.order;
 
 import com.epam.fitness.command.Command;
 import com.epam.fitness.command.CommandResult;
-import com.epam.fitness.entity.NutritionType;
+import com.epam.fitness.entity.order.NutritionType;
 import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.service.api.OrderService;
 
