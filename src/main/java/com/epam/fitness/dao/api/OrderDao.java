@@ -1,6 +1,6 @@
 package com.epam.fitness.dao.api;
 
-import com.epam.fitness.entity.Order;
+import com.epam.fitness.entity.order.Order;
 import com.epam.fitness.exception.DaoException;
 
 import java.util.List;
