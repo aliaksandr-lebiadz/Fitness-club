@@ -7,7 +7,7 @@ import com.epam.fitness.entity.assignment.Exercise;
 import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.exception.ValidationException;
 import com.epam.fitness.service.api.AssignmentService;
-import com.epam.fitness.validator.AssignmentValidator;
+import com.epam.fitness.validator.api.AssignmentValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,9 +48,8 @@ public class ChangeAssignmentCommand implements Command {
             int amountOfReps = Integer.parseInt(amountOfRepsStr);
             String workoutDateStr = request.getParameter(WORKOUT_DATE_PARAMETER);
             Date workoutDate = DATE_FORMAT.parse(workoutDateStr);
-            if(!isParametersValid(amountOfSets, amountOfReps, workoutDate)){
-                throw new ValidationException();
-            }
+
+            checkAssignmentParameters(amountOfSets, amountOfReps, workoutDate);
 
             String exerciseIdStr = request.getParameter(EXERCISE_SELECT_PARAMETER);
             int exerciseId = Integer.parseInt(exerciseIdStr);
@@ -72,6 +71,8 @@ public class ChangeAssignmentCommand implements Command {
 
     }
 
+    //TODO maybe create utils
+
     private void addAssignment(HttpServletRequest request, Exercise exercise, int amountOfSets,
                                int amountOfReps, Date workoutDate) throws ServiceException{
         String orderIdStr = request.getParameter(ORDER_ID_PARAMETER);
@@ -91,10 +92,12 @@ public class ChangeAssignmentCommand implements Command {
         }
     }
 
-    private boolean isParametersValid(int amountOfSets, int amountOfReps, Date workoutDate) {
-        return validator.isAmountValid(amountOfSets)
-                && validator.isAmountValid(amountOfReps)
-                && validator.isWorkoutDateValid(workoutDate);
+    private void checkAssignmentParameters(int amountOfSets, int amountOfReps, Date workoutDate)
+            throws ValidationException{
+        if(!validator.isAmountOfSetsValid(amountOfSets) && validator.isAmountOfRepsValid(amountOfReps)
+                && validator.isWorkoutDateValid(workoutDate)){
+            throw new ValidationException("Assignment validation failed!");
+        }
     }
 
 }

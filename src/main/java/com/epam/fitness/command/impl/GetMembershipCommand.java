@@ -6,7 +6,7 @@ import com.epam.fitness.entity.user.User;
 import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.exception.ValidationException;
 import com.epam.fitness.service.api.OrderService;
-import com.epam.fitness.validator.PaymentValidator;
+import com.epam.fitness.validator.api.PaymentValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,9 +35,8 @@ public class GetMembershipCommand implements Command {
         String cardNumber = request.getParameter(CARD_NUMBER_PARAMETER);
         String validThru = request.getParameter(VALID_THRU_PARAMETER);
         String cvv = request.getParameter(CVV_PARAMETER);
-        if(!isParametersValid(cardNumber, validThru, cvv)){
-            throw new ValidationException();
-        }
+
+        checkPaymentParameters(cardNumber, validThru, cvv);
 
         //there should by payment process
         HttpSession session = request.getSession();
@@ -48,9 +47,12 @@ public class GetMembershipCommand implements Command {
         return CommandResult.forward(ORDERS_PAGE_REQUEST);
     }
 
-    private boolean isParametersValid(String cardNumber, String validThru, String cvv){
-        return paymentValidator.isCardNumberValid(cardNumber)
-                && paymentValidator.isThruValid(validThru)
-                && paymentValidator.isCvvValid(cvv);
+    private void checkPaymentParameters(String cardNumber, String validThru, String cvv)
+            throws ValidationException{
+        if(!paymentValidator.isCardNumberValid(cardNumber)
+                && paymentValidator.isExpirationDateValid(validThru)
+                && paymentValidator.isCvvValid(cvv)){
+            throw new ValidationException("Payment validation failed!");
+        }
     }
 }
