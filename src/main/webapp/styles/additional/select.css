@@ -29,7 +29,7 @@ select:-moz-focusring {
     border-radius: 3px;
     overflow: hidden;
     height: 30px;
-    background: #fff url("../../images/drop_down_icon.png") no-repeat 100% 50%;
+    background: #fff url("../../icons/drop_down_icon.png") no-repeat 100% 50%;
 }
 
 .select-style select {
