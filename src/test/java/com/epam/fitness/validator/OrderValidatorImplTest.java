@@ -1,14 +1,16 @@
 package com.epam.fitness.validator;
 
+import com.epam.fitness.validator.api.OrderValidator;
+import com.epam.fitness.validator.impl.OrderValidatorImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class OrderValidatorTest {
+public class OrderValidatorImplTest {
 
     private static final String VALID_FEEDBACK = "Hello. It's my feedback.";
     private static final String INVALID_FEEDBACK = "Feedback.";
 
-    private OrderValidator validator = new OrderValidator();
+    private OrderValidator validator = new OrderValidatorImpl();
 
     @Test
     public void testIsFeedbackValidShouldReturnTrueWhenValidFeedbackSupplied(){
