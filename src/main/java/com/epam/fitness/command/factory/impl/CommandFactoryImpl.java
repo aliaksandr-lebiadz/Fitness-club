@@ -10,21 +10,17 @@ import com.epam.fitness.command.impl.order.ShowOrdersCommand;
 import com.epam.fitness.command.impl.user.LogOutCommand;
 import com.epam.fitness.command.impl.user.LoginCommand;
 import com.epam.fitness.dao.factory.DaoFactory;
-import com.epam.fitness.service.api.AssignmentService;
-import com.epam.fitness.service.api.ExerciseService;
 import com.epam.fitness.service.api.OrderService;
-import com.epam.fitness.service.api.UserService;
 import com.epam.fitness.service.impl.*;
 import com.epam.fitness.command.impl.assignment.ChangeAssignmentStatusCommand;
 import com.epam.fitness.command.impl.assignment.ShowAssignmentsCommand;
 import com.epam.fitness.command.impl.order.AssignNutritionTypeCommand;
 import com.epam.fitness.command.impl.user.SetUserDiscountCommand;
-import com.epam.fitness.utils.CurrentPageGetter;
 import com.epam.fitness.utils.OrderUtils;
-import com.epam.fitness.validator.AssignmentValidator;
-import com.epam.fitness.validator.OrderValidator;
-import com.epam.fitness.validator.PaymentValidator;
-import com.epam.fitness.validator.UserValidator;
+import com.epam.fitness.validator.impl.AssignmentValidatorImpl;
+import com.epam.fitness.validator.impl.OrderValidatorImpl;
+import com.epam.fitness.validator.impl.PaymentValidatorImpl;
+import com.epam.fitness.validator.impl.UserValidatorImpl;
 
 public class CommandFactoryImpl implements CommandFactory {
 
@@ -75,7 +71,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case GET_MEMBERSHIP_COMMAND:
                 command =  new GetMembershipCommand(
                         getOrderService(),
-                        new PaymentValidator()
+                        new PaymentValidatorImpl()
                 );
                 break;
             case SHOW_ORDERS_COMMAND:
@@ -86,7 +82,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case SEND_FEEDBACK_COMMAND:
                 command =  new SendFeedbackCommand(
                         getOrderService(),
-                        new OrderValidator()
+                        new OrderValidatorImpl()
                 );
                 break;
             case SHOW_TRAINER_CLIENTS_COMMAND:
@@ -119,7 +115,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case CHANGE_ASSIGNMENT_COMMAND:
                 command = new ChangeAssignmentCommand(
                         new AssignmentServiceImpl(factory),
-                        new AssignmentValidator()
+                        new AssignmentValidatorImpl()
                 );
                 break;
             case SHOW_USERS_PAGE_COMMAND:
@@ -137,7 +133,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case SET_USER_DISCOUNT_COMMAND:
                 command = new SetUserDiscountCommand(
                         new UserServiceImpl(factory),
-                        new UserValidator()
+                        new UserValidatorImpl()
                 );
                 break;
             case LOG_OUT_COMMAND:
