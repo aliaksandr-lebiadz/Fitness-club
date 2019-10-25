@@ -16,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Fitness club</title>
         <link rel="stylesheet" href="styles/main/login.css"/>
-        <link rel="icon" href="images/title_icon.png"/>
+        <link rel="icon" href="icons/title_icon.png"/>
     </head>
 
     <body>

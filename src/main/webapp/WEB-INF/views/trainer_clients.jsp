@@ -38,7 +38,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>${title}</title>
-        <link rel="icon" href="${pageContext.request.contextPath}/images/title_icon.png"/>
+        <link rel="icon" href="${pageContext.request.contextPath}/icons/title_icon.png"/>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main/trainer_clients.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/additional/display_table.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/additional/select.css">
