@@ -2,8 +2,8 @@ package com.epam.fitness.dao.impl;
 
 import com.epam.fitness.builder.Builder;
 import com.epam.fitness.dao.api.OrderDao;
-import com.epam.fitness.entity.NutritionType;
-import com.epam.fitness.entity.Order;
+import com.epam.fitness.entity.order.NutritionType;
+import com.epam.fitness.entity.order.Order;
 import com.epam.fitness.exception.DaoException;
 
 import java.sql.Connection;
