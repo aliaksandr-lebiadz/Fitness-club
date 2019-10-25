@@ -22,15 +22,17 @@
     <fmt:message key="nutrition_popup.title" var="nutrition_popup_title"/>
     <fmt:message key="nutrition_popup.label.nutrition" var="nutrition"/>
     <fmt:message key="nutrition_popup.button" var="nutrition_popup_button"/>
-    <fmt:message key="nutrition_popup.low_calorie" var="low_calorie"/>
-    <fmt:message key="nutrition_popup.medium_calorie" var="medium_calorie"/>
-    <fmt:message key="nutrition_popup.high_calorie" var="high_calorie"/>
     <fmt:message key="zero_clients.message" var="zero_clients_message"/>
     <fmt:message key="zero_clients.button" var="home_button"/>
 </fmt:bundle>
 <fmt:bundle basename="pages_content" prefix="orders.">
     <fmt:message key="table.begin_date" var="begin_date"/>
     <fmt:message key="table.end_date" var="end_date"/>
+</fmt:bundle>
+<fmt:bundle basename="pages_content" prefix="nutrition_type.">
+    <fmt:message key="low_calorie" var="low_calorie"/>
+    <fmt:message key="medium_calorie" var="medium_calorie"/>
+    <fmt:message key="high_calorie" var="high_calorie"/>
 </fmt:bundle>
 
 <!DOCTYPE html>
@@ -117,9 +119,9 @@
                     <label for="nutrition-type-choice">${nutrition}</label>
                     <div class="select-style">
                         <select name="nutrition_type" id="nutrition-type-choice">
-                            <option value="low-carb">${low_calorie}</option>
-                            <option value="medium-carb">${medium_calorie}</option>
-                            <option value="high-carb">${high_calorie}</option>
+                            <option value="low calorie">${low_calorie}</option>
+                            <option value="medium calorie">${medium_calorie}</option>
+                            <option value="high calorie">${high_calorie}</option>
                         </select>
                     </div>
                     <input type="hidden" name="order_id" class="hidden-id"/>
