@@ -46,13 +46,12 @@ public class AssignmentServiceImpl implements AssignmentService {
     }
 
     @Override
-    public String getNutritionTypeByOrderId(int orderId) throws ServiceException {
+    public NutritionType getNutritionTypeByOrderId(int orderId) throws ServiceException {
         try{
             Optional<Order> orderOptional = orderDao.findById(orderId);
             if(orderOptional.isPresent()){
                 Order order = orderOptional.get();
-                NutritionType nutritionType = order.getNutritionType();
-                return nutritionType != null ? nutritionType.getValue() : null;
+                return order.getNutritionType();
             } else{
                 throw new ServiceException("Order with id " + orderId + " not found!");
             }
