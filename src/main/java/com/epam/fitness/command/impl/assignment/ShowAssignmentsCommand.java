@@ -2,6 +2,7 @@ package com.epam.fitness.command.impl.assignment;
 
 import com.epam.fitness.command.Command;
 import com.epam.fitness.command.CommandResult;
+import com.epam.fitness.entity.order.NutritionType;
 import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.service.api.AssignmentService;
 import com.epam.fitness.service.api.ExerciseService;
@@ -37,7 +38,7 @@ public class ShowAssignmentsCommand implements Command {
         HttpSession session = request.getSession();
         List<Assignment> assignments = assignmentService.getAllByOrderId(orderId);
         session.setAttribute(ASSIGNMENTS_ATTRIBUTE, assignments);
-        String nutritionType = assignmentService.getNutritionTypeByOrderId(orderId);
+        NutritionType nutritionType = assignmentService.getNutritionTypeByOrderId(orderId);
         session.setAttribute(NUTRITION_TYPE_ATTRIBUTE, nutritionType);
         List<Exercise> exercises = exerciseService.getAll();
         session.setAttribute(EXERCISES_ATTRIBUTE, exercises);
