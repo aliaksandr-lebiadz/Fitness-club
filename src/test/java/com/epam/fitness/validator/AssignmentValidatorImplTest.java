@@ -1,49 +1,62 @@
 package com.epam.fitness.validator;
 
+import com.epam.fitness.validator.api.AssignmentValidator;
+import com.epam.fitness.validator.impl.AssignmentValidatorImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.Date;
 
-public class AssignmentValidatorTest {
+public class AssignmentValidatorImplTest {
 
     private static final int VALID_AMOUNT = 5;
     private static final int NEGATIVE_AMOUNT = -2;
     private static final int ZERO_AMOUNT = 0;
 
-    private AssignmentValidator validator = new AssignmentValidator();
+    private AssignmentValidator validator = new AssignmentValidatorImpl();
 
     /* testing isAmountValid method */
 
     @Test
-    public void testIsAmountValidShouldReturnTrueWhenValidAmountSupplied(){
+    public void testIsAmountOfRepsValidShouldReturnTrueWhenValidAmountOfRepsSupplied(){
         //given
 
         //when
-        boolean actual = validator.isAmountValid(VALID_AMOUNT);
+        boolean actual = validator.isAmountOfRepsValid(VALID_AMOUNT);
 
         //then
         Assert.assertTrue(actual);
     }
 
     @Test
-    public void testIsAmountValidShouldReturnFalseWhenNegativeAmountSupplied(){
+    public void testIsAmountOfSetsValidShouldReturnTrueWhenValidAmountOfSetsSupplied(){
         //given
 
         //when
-        boolean actual = validator.isAmountValid(NEGATIVE_AMOUNT);
+        boolean actual = validator.isAmountOfSetsValid(VALID_AMOUNT);
+
+        //then
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testIsAmountOfRepsValidShouldReturnFalseWhenNegativeAmountSupplied(){
+        //given
+
+        //when
+        boolean actual = validator.isAmountOfRepsValid(NEGATIVE_AMOUNT);
 
         //then
         Assert.assertFalse(actual);
     }
 
     @Test
-    public void testIsAmountValidShouldReturnFalseWhenZeroAmountSupplied(){
+    public void testIsAmountOfSetsValidShouldReturnFalseWhenZeroAmountSupplied(){
         //given
 
         //when
-        boolean actual = validator.isAmountValid(ZERO_AMOUNT);
+        boolean actual = validator.isAmountOfSetsValid(ZERO_AMOUNT);
 
         //then
         Assert.assertFalse(actual);
