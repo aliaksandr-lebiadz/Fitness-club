@@ -38,8 +38,8 @@ public class OrderBuilder implements Builder<Order> {
         int id = resultSet.getInt(ID_COLUMN);
         int clientId = resultSet.getInt(CLIENT_ID_COLUMN);
         int trainerId = resultSet.getInt(TRAINER_ID_COLUMN);
-        Date beginDate = resultSet.getDate(BEGIN_DATE_COLUMN);
-        Date endDate = resultSet.getDate(END_DATE_COLUMN);
+        Date beginDate = resultSet.getTimestamp(BEGIN_DATE_COLUMN);
+        Date endDate = resultSet.getTimestamp(END_DATE_COLUMN);
         String feedback = resultSet.getString(FEEDBACK_COLUMN);
         BigDecimal price = resultSet.getBigDecimal(PRICE_COLUMN);
         String nutritionTypeValue = resultSet.getString(NUTRITION_TYPE_COLUMN);
