@@ -5,7 +5,7 @@ import com.epam.fitness.command.CommandResult;
 import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.exception.ValidationException;
 import com.epam.fitness.service.api.UserService;
-import com.epam.fitness.validator.UserValidator;
+import com.epam.fitness.validator.api.UserValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +30,7 @@ public class SetUserDiscountCommand implements Command {
         String discountStr = request.getParameter(DISCOUNT_PARAMETER);
         int discount = Integer.parseInt(discountStr);
         if(!validator.isDiscountValid(discount)){
-            throw new ValidationException();
+            throw new ValidationException("Discount validation failed!");
         }
         String userIdStr = request.getParameter(USER_ID_PARAMETER);
         int userId = Integer.parseInt(userIdStr);
