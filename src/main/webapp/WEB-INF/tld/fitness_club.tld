@@ -28,5 +28,10 @@
         <tag-class>com.epam.fitness.tag.localizer.AssignmentStatusLocalizerTag</tag-class>
         <body-content>scriptless</body-content>
     </tag>
+    <tag>
+        <name>nutrition-type-localizer</name>
+        <tag-class>com.epam.fitness.tag.localizer.NutritionTypeLocalizerTag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
 
 </taglib>
