@@ -310,7 +310,7 @@ public class ProxyConnection implements Connection {
     }
 
     /**
-     * Really closes the connection if it isn't null.
+     * <p>Really closes the connection if it isn't null.</p>
      */
     public void terminate() throws SQLException{
         if(connection != null){
