@@ -40,10 +40,10 @@
 
         <div id="intro"></div>
         <div id="disable-div"></div>
-        <c:if test="${fn:length(sessionScope.orders) ne 0}">
+        <c:if test="${fn:length(requestScope.orders) ne 0}">
             <div id="container">
-                <form class="check-submit-form" id="orders-form" action="controller?command=showAssignments" method="post">
-                    <display:table class="display-table" name="sessionScope.orders" uid="row" pagesize="5" export="false">
+                <form class="check-submit-form" id="orders-form" action="controller" method="get">
+                    <display:table class="display-table" name="requestScope.orders" uid="row" pagesize="5" export="false" requestURI="">
                         <display:column property="id" class="hidden" headerClass="hidden"/>
                         <display:column title="${begin_date}">
                             <fmt:formatDate value="${row.beginDate}"/>
@@ -57,6 +57,7 @@
                     </display:table>
                     <hr>
                     <input type="hidden" name="order_id" class="hidden-id" required/>
+                    <input type="hidden" name="command" value="showAssignments"/>
                     <button type="button" class="custom-button" id="feedback-button"
                             onclick="showPopUp('#feedback-popup')">
                         ${leave_feedback_button}
@@ -67,7 +68,7 @@
                 </form>
             </div>
         </c:if>
-        <c:if test="${fn:length(sessionScope.orders) eq 0}">
+        <c:if test="${fn:length(requestScope.orders) eq 0}">
             <div id="no-orders-container">
                 <p>${zero_orders}</p>
                 <form id="no-orders-form" action="controller?command=showOrderPage" method="post">

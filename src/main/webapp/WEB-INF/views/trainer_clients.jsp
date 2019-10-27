@@ -58,7 +58,7 @@
         <div id="intro"></div>
 
         <div id="disable-div"></div>
-        <c:if test="${fn:length(sessionScope.clients) eq 0}">
+        <c:if test="${fn:length(requestScope.clients) eq 0}">
             <div id="no-clients-container">
                 <p>${zero_clients_message}</p>
                 <form id="no-clients-form" action="controller?command=showHomePage" method="post">
@@ -66,13 +66,14 @@
                 </form>
             </div>
         </c:if>
-        <c:if test="${fn:length(sessionScope.clients) ne 0}">
+        <c:if test="${fn:length(requestScope.clients) ne 0}">
             <div id="clients-container">
                 <span id="clients-title">${clients_list_title}</span>
                 <hr>
-                <form id="clients-form" action="controller?command=showTrainerClientOrders" method="post">
-                    <c:forEach items="${sessionScope.clients}" var="item">
+                <form id="clients-form" action="controller" method="get">
+                    <c:forEach items="${requestScope.clients}" var="item">
                         <input type="hidden" id="hidden-client-id" name="client_id"/>
+                        <input type="hidden" name="command" value="showTrainerClients"/>
                         <div class="client" onclick="transferIdAndSubmitForm(${item.id}, '#clients-form')">
                                 ${item.firstName} ${item.secondName}
                         </div>
@@ -82,7 +83,7 @@
             <div id="orders-container">
                 <span id="orders-title">${table_title}</span>
                 <hr>
-                <display:table class="display-table" name="sessionScope.client_orders" uid="row" pagesize="5" export="false">
+                <display:table class="display-table" name="requestScope.client_orders" uid="row" pagesize="5" export="false" requestURI="">
                     <display:column property="id" class="hidden" headerClass="hidden"/>
                     <display:column title="${begin_date}">
                         <fmt:formatDate value="${row.beginDate}"/>
@@ -92,7 +93,7 @@
                     </display:column>
                 </display:table>
                 <hr>
-                <form id="assignment-form" action="controller?command=showAssignments" method="post">
+                <form class="assignment-form" id="see-assignments-form" action="controller" method="get">
                     <button type="button" class="custom-button" id="nutrition-button"
                             onclick="showPopUp('#nutrition-popup')">
                             ${nutrition_button}
@@ -103,8 +104,9 @@
                     </button>
                     <input type="button" class="custom-button" id="see-assignments-button"
                            value="${see_assignments_button}"
-                           onclick="if($('.hidden-id').val() !== ''){ $('#assignment-form').submit(); }"/>
+                           onclick="if($('.hidden-id').val() !== ''){ $('#see-assignments-form').submit(); }"/>
                     <input type="hidden" name="order_id" class="hidden-id"/>
+                    <input type="hidden" name="command" value="showAssignments"/>
                 </form>
             </div>
             <div class="popup" id="nutrition-popup">
@@ -136,13 +138,13 @@
                     <span id="assignment-popup-title">${assignment_popup_title}</span>
                     <hr/>
                 </div>
-                <form id="assignment-form" action="controller?command=changeAssignment&operation=add" method="post">
+                <form class="assignment-form" action="controller?command=changeAssignment&operation=add" method="post">
                     <label>${workout_date}</label>
                     <fc:date-input name="date" minDate="today"/>
                     <label for="exercise-select-id">${exercise}</label>
                     <div class="select-style">
                         <select name="exercise_select" id="exercise-select-id">
-                            <c:forEach items="${sessionScope.exercises}" var="item">
+                            <c:forEach items="${requestScope.exercises}" var="item">
                                 <option value="${item.id}">${item.name}</option>
                             </c:forEach>
                         </select>
