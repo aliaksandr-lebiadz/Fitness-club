@@ -5,13 +5,13 @@ import com.epam.fitness.command.CommandResult;
 import com.epam.fitness.entity.order.NutritionType;
 import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.service.api.OrderService;
+import com.epam.fitness.utils.CurrentPageGetter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AssignNutritionTypeCommand implements Command {
 
-    private static final String TRAINER_CLIENTS_PAGE = "/trainerClients";
     private static final String NUTRITION_TYPE_PARAMETER = "nutrition_type";
     private static final String ORDER_ID_PARAMETER = "order_id";
 
@@ -28,6 +28,7 @@ public class AssignNutritionTypeCommand implements Command {
         String orderIdStr = request.getParameter(ORDER_ID_PARAMETER);
         int orderId = Integer.parseInt(orderIdStr);
         service.updateNutritionById(orderId, nutritionType);
-        return CommandResult.redirect(TRAINER_CLIENTS_PAGE);
+        String currentPage = CurrentPageGetter.getCurrentPage(request);
+        return CommandResult.redirect(currentPage);
     }
 }
