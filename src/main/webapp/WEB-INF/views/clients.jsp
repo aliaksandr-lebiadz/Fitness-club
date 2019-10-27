@@ -6,7 +6,7 @@
 <%@ taglib prefix="fc" uri="fitness-club" %>
 <fmt:setLocale scope="session" value="${sessionScope.locale}"/>
 
-<fmt:bundle basename="pages_content" prefix="users.">
+<fmt:bundle basename="pages_content" prefix="clients.">
     <fmt:message key="title" var="title"/>
     <fmt:message key="table.name" var="name"/>
     <fmt:message key="table.email" var="email"/>
@@ -31,7 +31,7 @@
         <link rel="icon" href="${pageContext.request.contextPath}/icons/title_icon.png"/>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/additional/display_table.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/additional/disable_div.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main/users.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main/clients.css">
         <script src="${pageContext.request.contextPath}/static/jquery-2.0.2.min.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/popup.js"></script>
         <script src="${pageContext.request.contextPath}/scripts/table_select.js"></script>
@@ -43,9 +43,9 @@
         <div id="intro"></div>
         <div id="disable-div"></div>
 
-        <c:if test="${fn:length(sessionScope.users) ne 0}">
+        <c:if test="${fn:length(requestScope.clients) ne 0}">
             <div id="container">
-                <display:table class="display-table" name="sessionScope.users" uid="row" pagesize="5" export="false">
+                <display:table class="display-table" name="requestScope.clients" uid="row" pagesize="5" export="false" requestURI="">
                     <display:column property="id" class="hidden" headerClass="hidden"/>
                     <display:column title="${name}">
                         ${row.firstName} ${row.secondName}
