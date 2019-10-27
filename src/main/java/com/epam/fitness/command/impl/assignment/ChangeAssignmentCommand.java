@@ -7,6 +7,7 @@ import com.epam.fitness.entity.assignment.Exercise;
 import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.exception.ValidationException;
 import com.epam.fitness.service.api.AssignmentService;
+import com.epam.fitness.utils.CurrentPageGetter;
 import com.epam.fitness.validator.api.AssignmentValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,12 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Optional;
 
 public class ChangeAssignmentCommand implements Command {
 
-    private static final String TRAINER_CLIENTS_PAGE = "/trainerClients";
-    private static final String ASSIGNMENTS_PAGE = "/controller?command=showAssignments&order_id=%d";
     private static final String ORDER_ID_PARAMETER = "order_id";
     private static final String ASSIGNMENT_ID_PARAMETER = "assignment_id";
     private static final String EXERCISE_SELECT_PARAMETER = "exercise_select";
@@ -57,21 +55,18 @@ public class ChangeAssignmentCommand implements Command {
             String operation = request.getParameter(OPERATION_PARAMETER);
             if(ADD_OPERATION.equals(operation)){
                 addAssignment(request, exercise, amountOfSets, amountOfReps, workoutDate);
-                return CommandResult.redirect(TRAINER_CLIENTS_PAGE);
             } else{ // change operation
                 String assignmentIdStr = request.getParameter(ASSIGNMENT_ID_PARAMETER);
                 int assignmentId = Integer.parseInt(assignmentIdStr);
                 service.updateById(assignmentId, exercise, amountOfSets, amountOfReps, workoutDate);
-                String page = getFormattedAssignmentPageUrlByAssignmentId(assignmentId);
-                return CommandResult.forward(page);
             }
+            String currentPage = CurrentPageGetter.getCurrentPage(request);
+            return CommandResult.redirect(currentPage);
         } catch (ParseException ex){
             throw new ServiceException(ex.getMessage(), ex);
         }
 
     }
-
-    //TODO maybe create utils
 
     private void addAssignment(HttpServletRequest request, Exercise exercise, int amountOfSets,
                                int amountOfReps, Date workoutDate) throws ServiceException{
@@ -79,17 +74,6 @@ public class ChangeAssignmentCommand implements Command {
         int orderId = Integer.parseInt(orderIdStr);
         Assignment assignment = new Assignment(orderId, exercise, amountOfSets, amountOfReps, workoutDate);
         service.create(assignment);
-    }
-
-    private String getFormattedAssignmentPageUrlByAssignmentId(int assignmentId) throws ServiceException{
-        Optional<Assignment> assignmentOptional = service.findById(assignmentId);
-        if(assignmentOptional.isPresent()){
-            Assignment assignment = assignmentOptional.get();
-            int orderId = assignment.getOrderId();
-            return String.format(ASSIGNMENTS_PAGE, orderId);
-        } else{
-            throw new ServiceException("Invalid assignment id: " + assignmentId);
-        }
     }
 
     private void checkAssignmentParameters(int amountOfSets, int amountOfReps, Date workoutDate)
