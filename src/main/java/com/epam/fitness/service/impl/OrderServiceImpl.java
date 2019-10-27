@@ -38,14 +38,15 @@ public class OrderServiceImpl implements OrderService {
                 int monthsAmount = gymMembership.getMonthsAmount();
                 BigDecimal initialPrice = gymMembership.getPrice();
                 int clientDiscount = client.getDiscount();
-                BigDecimal totalPrice = utils.getPriceWithDiscount(initialPrice, clientDiscount);
+                BigDecimal totalPrice = utils.calculatePriceWithDiscount(initialPrice, clientDiscount);
                 Date endDate = utils.getDateAfterMonthsAmount(monthsAmount);
                 int clientId = client.getId();
                 Order order = new Order(clientId, endDate, totalPrice);
                 orderDao.save(order);
             } else{
-                throw new ServiceException("Invalid gym membership id: " + membershipId);
+                throw new ServiceException("Gym membership with the id " + membershipId + " isn't found!");
             }
+
         } catch(DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
         }

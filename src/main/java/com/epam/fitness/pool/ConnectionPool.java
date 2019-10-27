@@ -28,12 +28,12 @@ public class ConnectionPool {
     private int maxWaitInSeconds;
 
     private ConnectionPool(){
-        ConnectionFactory manager = new ConnectionFactory();
-        this.maxWaitInSeconds = manager.getMaxWaitInSeconds();
-        int poolSize = manager.getPoolSize();
-        semaphore = new Semaphore(poolSize, SEMAPHORE_FAIR);
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        this.maxWaitInSeconds = connectionFactory.getMaxWaitInSeconds();
+        int poolSize = connectionFactory.getPoolSize();
+        this.semaphore = new Semaphore(poolSize, SEMAPHORE_FAIR);
         for(int i = 0; i < poolSize; i++){
-            ProxyConnection proxyConnection = manager.createConnection();
+            ProxyConnection proxyConnection = connectionFactory.createConnection();
             connections.add(proxyConnection);
         }
     }

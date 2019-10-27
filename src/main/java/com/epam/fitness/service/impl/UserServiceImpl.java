@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     public UserServiceImpl(DaoFactory factory){
-        userDao = factory.createUserDao();
+        this.userDao = factory.createUserDao();
     }
 
     @Override
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
                 user.setDiscount(discount);
                 userDao.save(user);
             } else{
-                throw new ServiceException("User with id " + id + " not found!");
+                throw new ServiceException("User with the id " + id + " isn't found!");
             }
 
         } catch (DaoException ex){

@@ -14,7 +14,7 @@ public class GymMembershipServiceImpl implements GymMembershipService {
     private GymMembershipDao gymMembershipDao;
 
     public GymMembershipServiceImpl(DaoFactory factory){
-        gymMembershipDao = factory.createGymMembershipDao();
+        this.gymMembershipDao = factory.createGymMembershipDao();
     }
 
     @Override

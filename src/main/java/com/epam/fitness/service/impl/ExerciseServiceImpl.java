@@ -14,7 +14,7 @@ public class ExerciseServiceImpl implements ExerciseService {
     private ExerciseDao exerciseDao;
 
     public ExerciseServiceImpl(DaoFactory factory){
-        exerciseDao = factory.createExerciseDao();
+        this.exerciseDao = factory.createExerciseDao();
     }
 
     @Override

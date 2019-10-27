@@ -22,10 +22,9 @@ public class AssignmentServiceImpl implements AssignmentService {
     private OrderDao orderDao;
 
     public AssignmentServiceImpl(DaoFactory factory){
-        assigmentDao = factory.createAssignmentDao();
-        orderDao = factory.createOrderDao();
+        this.assigmentDao = factory.createAssignmentDao();
+        this.orderDao = factory.createOrderDao();
     }
-
 
     @Override
     public void create(Assignment assignment) throws ServiceException {
@@ -53,7 +52,7 @@ public class AssignmentServiceImpl implements AssignmentService {
                 Order order = orderOptional.get();
                 return order.getNutritionType();
             } else{
-                throw new ServiceException("Order with id " + orderId + " not found!");
+                throw new ServiceException("Order with the id " + orderId + " isn't found!");
             }
         } catch (DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
@@ -69,7 +68,7 @@ public class AssignmentServiceImpl implements AssignmentService {
                 assignment.setStatus(status);
                 assigmentDao.save(assignment);
             } else{
-                throw new ServiceException("Assignment with id " + id + " not found!");
+                throw new ServiceException("Assignment with the id " + id + " isn't found!");
             }
         } catch (DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
@@ -77,7 +76,8 @@ public class AssignmentServiceImpl implements AssignmentService {
     }
 
     @Override
-    public void updateById(int id, Exercise exercise, int amountOfSets, int amountOfReps, Date workoutDate) throws ServiceException {
+    public void updateById(int id, Exercise exercise, int amountOfSets, int amountOfReps, Date workoutDate)
+            throws ServiceException {
         try{
             Optional<Assignment> optionalAssignment = assigmentDao.findById(id);
             if(optionalAssignment.isPresent()){
