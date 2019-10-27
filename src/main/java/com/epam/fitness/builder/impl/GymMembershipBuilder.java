@@ -12,6 +12,7 @@ import java.sql.SQLException;
  *
  * @author Alexandr Lebed
  * @see Builder
+ * @see GymMembership
  */
 public class GymMembershipBuilder implements Builder<GymMembership> {
 

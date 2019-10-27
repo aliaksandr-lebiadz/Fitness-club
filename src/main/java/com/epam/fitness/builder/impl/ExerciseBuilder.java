@@ -11,6 +11,7 @@ import java.sql.SQLException;
  *
  * @author Alexandr Lebed
  * @see Builder
+ * @see Exercise
  */
 public class ExerciseBuilder implements Builder<Exercise> {
 

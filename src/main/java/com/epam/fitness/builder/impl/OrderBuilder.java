@@ -14,6 +14,7 @@ import java.util.Date;
  *
  * @author Alexandr Lebed
  * @see Builder
+ * @see Order
  */
 public class OrderBuilder implements Builder<Order> {
 
@@ -46,5 +47,4 @@ public class OrderBuilder implements Builder<Order> {
         NutritionType nutritionType = NutritionType.getNutritionType(nutritionTypeValue);
         return new Order(id, clientId, trainerId, beginDate, endDate, price, feedback, nutritionType);
     }
-
 }
