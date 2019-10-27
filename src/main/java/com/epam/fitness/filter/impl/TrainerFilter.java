@@ -16,7 +16,8 @@ import java.io.IOException;
 public class TrainerFilter extends AbstractFilter {
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         User user = getUser(request);
         if(user == null || user.getRole() != UserRole.TRAINER){
