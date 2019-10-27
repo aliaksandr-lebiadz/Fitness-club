@@ -6,6 +6,7 @@ import com.epam.fitness.command.CommandResult;
 import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.exception.ValidationException;
 import com.epam.fitness.service.api.OrderService;
+import com.epam.fitness.utils.CurrentPageGetter;
 import com.epam.fitness.validator.api.OrderValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,6 @@ public class SendFeedbackCommand implements Command {
 
     private static final String ORDER_ID_PARAMETER = "order_id";
     private static final String FEEDBACK_PARAMETER = "feedback";
-    private static final String ORDERS_PAGE = "/orders";
 
     private OrderService service;
     private OrderValidator validator;
@@ -35,6 +35,7 @@ public class SendFeedbackCommand implements Command {
         String orderIdStr = request.getParameter(ORDER_ID_PARAMETER);
         int orderId = Integer.parseInt(orderIdStr);
         service.updateFeedbackById(orderId, feedback);
-        return CommandResult.redirect(ORDERS_PAGE);
+        String currentPage = CurrentPageGetter.getCurrentPage(request);
+        return CommandResult.redirect(currentPage);
     }
 }

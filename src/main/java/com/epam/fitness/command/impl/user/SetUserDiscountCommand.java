@@ -5,6 +5,7 @@ import com.epam.fitness.command.CommandResult;
 import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.exception.ValidationException;
 import com.epam.fitness.service.api.UserService;
+import com.epam.fitness.utils.CurrentPageGetter;
 import com.epam.fitness.validator.api.UserValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,6 @@ public class SetUserDiscountCommand implements Command {
 
     private static final String USER_ID_PARAMETER = "user_id";
     private static final String DISCOUNT_PARAMETER = "discount";
-    private static final String USERS_PAGE = "/controller?command=showUsersPage";
 
     private UserService service;
     private UserValidator validator;
@@ -35,6 +35,7 @@ public class SetUserDiscountCommand implements Command {
         String userIdStr = request.getParameter(USER_ID_PARAMETER);
         int userId = Integer.parseInt(userIdStr);
         service.setUserDiscount(userId, discount);
-        return CommandResult.forward(USERS_PAGE);
+        String currentPage = CurrentPageGetter.getCurrentPage(request);
+        return CommandResult.redirect(currentPage);
     }
 }

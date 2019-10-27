@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 public class GetMembershipCommand implements Command {
 
-    private static final String ORDERS_PAGE_REQUEST = "/controller?command=showOrders";
+    private static final String ORDERS_PAGE = "/controller?command=showOrders";
     private static final String USER_ATTRIBUTE = "user";
     private static final String MEMBERSHIP_SELECT_PARAMETER = "membership_select";
     private static final String CARD_NUMBER_PARAMETER = "card_number";
@@ -38,13 +38,13 @@ public class GetMembershipCommand implements Command {
 
         checkPaymentParameters(cardNumber, validThru, cvv);
 
-        //there should by payment process
+        //there should be payment process
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute(USER_ATTRIBUTE);
         String membershipIdStr = request.getParameter(MEMBERSHIP_SELECT_PARAMETER);
         int membershipId = Integer.parseInt(membershipIdStr);
         orderService.create(user, membershipId);
-        return CommandResult.forward(ORDERS_PAGE_REQUEST);
+        return CommandResult.redirect(ORDERS_PAGE);
     }
 
     private void checkPaymentParameters(String cardNumber, String validThru, String cvv)
