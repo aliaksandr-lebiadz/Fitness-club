@@ -9,7 +9,7 @@
     <fmt:message key="link.my_orders" var="my_orders_link"/>
     <fmt:message key="link.my_clients" var="my_clients_link"/>
     <fmt:message key="link.log_out" var="log_out_link"/>
-    <fmt:message key="link.users" var="users_link"/>
+    <fmt:message key="link.clients" var="clients_link"/>
 </fmt:bundle>
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
                     <a class="navigation_link simple" href="controller?command=showHomePage">${home_link}</a>
                     <c:choose>
                         <c:when test="${user.role eq 'ADMIN'}">
-                            <a class="navigation_link simple" href="controller?command=showUsersPage">${users_link}</a>
+                            <a class="navigation_link simple" href="controller?command=showClients">${clients_link}</a>
                         </c:when>
                         <c:when test="${user.role eq 'TRAINER'}">
                             <a class="navigation_link simple" href="controller?command=showTrainerClients">${my_clients_link}</a>
