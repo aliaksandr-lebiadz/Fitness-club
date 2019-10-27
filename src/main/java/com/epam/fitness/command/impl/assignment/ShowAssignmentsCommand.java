@@ -11,12 +11,11 @@ import com.epam.fitness.entity.assignment.Exercise;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class ShowAssignmentsCommand implements Command {
 
-    private static final String ASSIGNMENTS_PAGE = "/assignments";
+    private static final String ASSIGNMENTS_PAGE_URL = "/assignments";
     private static final String ORDER_ID = "order_id";
     private static final String ASSIGNMENTS_ATTRIBUTE = "assignments";
     private static final String NUTRITION_TYPE_ATTRIBUTE = "nutrition_type";
@@ -35,13 +34,12 @@ public class ShowAssignmentsCommand implements Command {
             throws ServiceException {
         String orderIdStr = request.getParameter(ORDER_ID);
         int orderId = Integer.parseInt(orderIdStr);
-        HttpSession session = request.getSession();
         List<Assignment> assignments = assignmentService.getAllByOrderId(orderId);
-        session.setAttribute(ASSIGNMENTS_ATTRIBUTE, assignments);
+        request.setAttribute(ASSIGNMENTS_ATTRIBUTE, assignments);
         NutritionType nutritionType = assignmentService.getNutritionTypeByOrderId(orderId);
-        session.setAttribute(NUTRITION_TYPE_ATTRIBUTE, nutritionType);
+        request.setAttribute(NUTRITION_TYPE_ATTRIBUTE, nutritionType);
         List<Exercise> exercises = exerciseService.getAll();
-        session.setAttribute(EXERCISES_ATTRIBUTE, exercises);
-        return CommandResult.redirect(ASSIGNMENTS_PAGE);
+        request.setAttribute(EXERCISES_ATTRIBUTE, exercises);
+        return CommandResult.forward(ASSIGNMENTS_PAGE_URL);
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ShowOrdersCommand implements Command {
 
-    private static final String ORDERS_PAGE = "/orders";
+    private static final String ORDERS_PAGE_URL = "/orders";
     private static final String ORDERS_ATTRIBUTE = "orders";
     private static final String USER_ATTRIBUTE = "user";
 
@@ -30,8 +30,8 @@ public class ShowOrdersCommand implements Command {
         User user = (User)session.getAttribute(USER_ATTRIBUTE);
         int id = user.getId();
         List<Order> orders = service.getOrdersByClientId(id);
-        session.setAttribute(ORDERS_ATTRIBUTE, orders);
-        return CommandResult.redirect(ORDERS_PAGE);
+        request.setAttribute(ORDERS_ATTRIBUTE, orders);
+        return CommandResult.forward(ORDERS_PAGE_URL);
     }
 
 }
