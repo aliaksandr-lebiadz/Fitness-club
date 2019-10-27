@@ -14,6 +14,7 @@ import java.util.Date;
  *
  * @author Alexandr Lebed
  * @see Builder
+ * @see Assignment
  */
 public class AssignmentBuilder implements Builder<Assignment> {
 
@@ -37,16 +38,14 @@ public class AssignmentBuilder implements Builder<Assignment> {
     public Assignment build(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(ID_COLUMN);
         int orderId = resultSet.getInt(ORDER_ID_COLUMN);
-        java.sql.Date date = resultSet.getDate(WORKOUT_DATE_COLUMN);
-        long time = date.getTime();
-        Date workoutDate = new Date(time);
-        int amountOfSets = resultSet.getInt(AMOUNT_OF_SETS_COLUMN);
-        int amountOfReps = resultSet.getInt(AMOUNT_OF_REPS_COLUMN);
         String exerciseName = resultSet.getString(EXERCISE_NAME_COLUMN);
         int exerciseId = resultSet.getInt(EXERCISE_ID_COLUMN);
         Exercise exercise = new Exercise(exerciseId, exerciseName);
-        String assignmentValue = resultSet.getString(STATUS_COLUMN);
-        AssignmentStatus status = AssignmentStatus.valueOf(assignmentValue.toUpperCase());
+        int amountOfSets = resultSet.getInt(AMOUNT_OF_SETS_COLUMN);
+        int amountOfReps = resultSet.getInt(AMOUNT_OF_REPS_COLUMN);
+        Date workoutDate = resultSet.getDate(WORKOUT_DATE_COLUMN);
+        String assignmentStatusValue = resultSet.getString(STATUS_COLUMN);
+        AssignmentStatus status = AssignmentStatus.valueOf(assignmentStatusValue.toUpperCase());
         return new Assignment(id, orderId, exercise, amountOfSets, amountOfReps, workoutDate, status);
     }
 }

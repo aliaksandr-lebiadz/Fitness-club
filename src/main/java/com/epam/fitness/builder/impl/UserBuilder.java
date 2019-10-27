@@ -12,6 +12,7 @@ import java.sql.SQLException;
  *
  * @author Alexandr Lebed
  * @see Builder
+ * @see User
  */
 public class UserBuilder implements Builder<User> {
 
@@ -32,14 +33,13 @@ public class UserBuilder implements Builder<User> {
      */
     @Override
     public User build(ResultSet resultSet) throws SQLException {
-
         int id = resultSet.getInt(ID_COLUMN);
         String email = resultSet.getString(EMAIL_COLUMN);
         String password = resultSet.getString(PASSWORD_COLUMN);
         String roleValue = resultSet.getString(ROLE_COLUMN);
+        UserRole role = UserRole.valueOf(roleValue.toUpperCase());
         String firstName = resultSet.getString(FIRST_NAME_COLUMN);
         String secondName = resultSet.getString(SECOND_NAME_COLUMN);
-        UserRole role = UserRole.valueOf(roleValue.toUpperCase());
         int discount = resultSet.getInt(DISCOUNT_COLUMN);
         return new User(id, email, password, role, firstName, secondName, discount);
     }
