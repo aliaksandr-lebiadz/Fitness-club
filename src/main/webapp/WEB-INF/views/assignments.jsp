@@ -59,7 +59,7 @@
         <div id="intro"></div>
         <div id="disable-div"></div>
 
-        <c:if test="${fn:length(sessionScope.assignments) eq 0}">
+        <c:if test="${fn:length(requestScope.assignments) eq 0}">
             <div id="no-assignments-container">
                 <c:if test="${sessionScope.user.role eq 'CLIENT'}">
                     <p>${zero_assignments}</p>
@@ -75,16 +75,16 @@
                 </c:if>
             </div>
         </c:if>
-        <c:if test="${fn:length(sessionScope.assignments) ne 0}">
+        <c:if test="${fn:length(requestScope.assignments) ne 0}">
             <div id="container">
                 <form class="check-submit-form" id="assignment-form" action="controller?command=changeAssignmentStatus" method="post">
-                    <c:set var="nutrition_type" scope="page" value="${sessionScope.nutrition_type}"/>
+                    <c:set var="nutrition_type" scope="page" value="${requestScope.nutrition_type}"/>
                     <c:if test="${not empty nutrition_type}">
                         <span id="nutrition-type">
                                 ${nutrition_type_msg} <fc:nutrition-type-localizer>${nutrition_type}</fc:nutrition-type-localizer>
                         </span>
                     </c:if>
-                    <display:table class="display-table" name="sessionScope.assignments" uid="assignment" pagesize="5" export="false">
+                    <display:table class="display-table" name="requestScope.assignments" uid="assignment" pagesize="5" export="false" requestURI="">
                         <display:column property="id" class="hidden" headerClass="hidden"/>
                         <display:column title="${workout_date}">
                             <fmt:formatDate value="${assignment.workoutDate}"/>
@@ -103,7 +103,7 @@
                     <input type="hidden" name="assignment_id" class="hidden-id"/>
                     <input type="hidden" name="assignment_action" id="hidden-action"/>
                     <c:if test="${sessionScope.user.role eq 'CLIENT'}">
-                        <input type="submit" class="custom-button action-button" value="${accept_button}"
+                        <input type="button" class="custom-button action-button" value="${accept_button}"
                                onclick="$('#hidden-action').val('accept');
                                if($('.hidden-id').val() !== ''){ $('#assignment-form').submit();}">
                     </c:if>
@@ -129,7 +129,7 @@
                     <label for="exercise-select-id">${exercise}</label>
                     <div class="select-style">
                         <select name="exercise_select" id="exercise-select-id">
-                            <c:forEach items="${sessionScope.exercises}" var="item">
+                            <c:forEach items="${requestScope.exercises}" var="item">
                                 <option value="${item.id}">${item.name}</option>
                             </c:forEach>
                         </select>

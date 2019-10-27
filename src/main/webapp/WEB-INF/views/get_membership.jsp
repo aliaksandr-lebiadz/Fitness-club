@@ -36,7 +36,7 @@
         <div id="disable-div"></div>
 
         <div id="form-container">
-            <c:set var="memberships" scope="page" value="${sessionScope.memberships}"/>
+            <c:set var="memberships" scope="page" value="${requestScope.memberships}"/>
             <c:set var="user" scope="page" value="${sessionScope.user}"/>
             <span id="order-title">${form_title}</span>
             <hr/>
