@@ -6,8 +6,7 @@
     }
 
     body #purchase-popup{
-        position: absolute;
-        left: 32%;
+        margin: 0 -53px;
     }
 }
 @media screen and (max-width:480px){
@@ -25,12 +24,12 @@
     }
     body #purchase-popup{
         width: 45%;
-        min-width: 210px;
-        margin: 0 -72px 10px 0;
+        min-width: 0;
+        margin: 0 -63px 20px 0;
         font-size: 14px;
     }
 
-    body input[type=text]{
+    body input[type=text], input[type=password]{
         width: 90%;
         font-size: 14px;
     }
@@ -49,12 +48,13 @@
         left: 16%;
     }
     body #purchase-popup{
-        width: 65%;
-        min-width: 190px;
+        width: 60%;
+        min-width: 0;
         font-size: 12px;
+        margin: -10px -65px;
     }
 
-    body input[type=text]{
+    body input[type=text], input[type=password]{
         width: 90%;
         font-size: 12px;
     }
@@ -182,3 +182,4 @@ hr{
     margin-left: 10px;
     padding-bottom: 7px;
 }
+

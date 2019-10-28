@@ -28,8 +28,10 @@ label{
 
 #nutrition-type{
     display: block;
-    margin-right: 630px;
+    float: left;
+    padding-left: 20px;
     margin-top: 10px;
+    margin-bottom: 10px;
     font-style: italic;
     color: #42f59e;
 }
