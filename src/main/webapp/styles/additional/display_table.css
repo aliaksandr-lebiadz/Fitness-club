@@ -1,3 +1,46 @@
+@media screen and (max-width: 1024px){
+    body .display-table td, th{
+        padding: 8px;
+    }
+    body .page-banner{
+        margin-top: -10px;
+    }
+}
+@media screen and (max-width: 768px){
+    body .display-table td, th{
+        padding: 7px;
+    }
+}
+@media screen and (max-width: 480px){
+    body .display-table td, th{
+        padding: 5px;
+        font-size: 12px;
+    }
+    body .page-links{
+        font-size: 12px;
+    }
+    body .page-banner{
+        font-size: 12px;
+    }
+    body .custom-button{
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 320px){
+    body .display-table td, th{
+        padding: 5px;
+        font-size: 10px;
+    }
+    body .page-links{
+        font-size: 10px;
+    }
+    body .page-banner{
+        font-size: 10px;
+    }
+    body .custom-button{
+        font-size: 10px;
+    }
+}
 body{
     --border-color: #e1e9eb;
 }
