@@ -5,8 +5,7 @@ import com.epam.fitness.entity.user.UserRole;
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 
 import static org.mockito.Mockito.*;
@@ -14,20 +13,24 @@ import static org.mockito.Mockito.*;
 @RunWith(DataProviderRunner.class)
 public class CommandAccessControllerTest {
 
-    private static final User ADMIN =
-            new User(null, "", "", UserRole.ADMIN, "", "", 0);
-    private static final User TRAINER =
-            new User(null, "", "", UserRole.TRAINER, "", "", 0);
-    private static final User CLIENT =
-            new User(null, "", "", UserRole.CLIENT, "", "", 0);
+    private static final User ADMIN = mock(User.class);
+    private static final User CLIENT = mock(User.class);
+    private static final User TRAINER = mock(User.class);
     private static final String ADMIN_COMMAND = "setUserDiscount";
 
     private CommandAccessController controller = new CommandAccessController();
 
+    @BeforeClass
+    public static void createMocks(){
+        when(ADMIN.getRole()).thenReturn(UserRole.ADMIN);
+        when(CLIENT.getRole()).thenReturn(UserRole.CLIENT);
+        when(TRAINER.getRole()).thenReturn(UserRole.TRAINER);
+    }
+
     @DataProvider
     public static Object[][] adminCommandsDataProvider(){
         return new Object[][]{
-                { "showUsersPage" },
+                { "showClients" },
                 { "setUserDiscount" }
         };
     }
@@ -37,7 +40,7 @@ public class CommandAccessControllerTest {
         return new Object[][]{
                 { "assignNutritionType" },
                 { "showTrainerClients" },
-                { "showTrainerClientOrders" }
+                { "showAssignments" }
         };
     }
 
@@ -50,7 +53,8 @@ public class CommandAccessControllerTest {
                 { "sendFeedback "},
                 { "showAssignments" },
                 { "changeAssignment" },
-                { "changeAssignmentStatus" }
+                { "changeAssignmentStatus" },
+                { "showAssignments" }
         };
     }
 
