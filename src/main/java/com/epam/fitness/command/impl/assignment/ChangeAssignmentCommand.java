@@ -54,7 +54,10 @@ public class ChangeAssignmentCommand implements Command {
             Exercise exercise = new Exercise(exerciseId);
             String operation = request.getParameter(OPERATION_PARAMETER);
             if(ADD_OPERATION.equals(operation)){
-                addAssignment(request, exercise, amountOfSets, amountOfReps, workoutDate);
+                String orderIdStr = request.getParameter(ORDER_ID_PARAMETER);
+                int orderId = Integer.parseInt(orderIdStr);
+                Assignment assignment = new Assignment(orderId, exercise, amountOfSets, amountOfReps, workoutDate);
+                service.create(assignment);
             } else{ // change operation
                 String assignmentIdStr = request.getParameter(ASSIGNMENT_ID_PARAMETER);
                 int assignmentId = Integer.parseInt(assignmentIdStr);
@@ -68,18 +71,11 @@ public class ChangeAssignmentCommand implements Command {
 
     }
 
-    private void addAssignment(HttpServletRequest request, Exercise exercise, int amountOfSets,
-                               int amountOfReps, Date workoutDate) throws ServiceException{
-        String orderIdStr = request.getParameter(ORDER_ID_PARAMETER);
-        int orderId = Integer.parseInt(orderIdStr);
-        Assignment assignment = new Assignment(orderId, exercise, amountOfSets, amountOfReps, workoutDate);
-        service.create(assignment);
-    }
-
     private void checkAssignmentParameters(int amountOfSets, int amountOfReps, Date workoutDate)
             throws ValidationException{
-        if(!validator.isAmountOfSetsValid(amountOfSets) && validator.isAmountOfRepsValid(amountOfReps)
-                && validator.isWorkoutDateValid(workoutDate)){
+        if(!validator.isAmountOfSetsValid(amountOfSets)
+                || !validator.isAmountOfRepsValid(amountOfReps)
+                || !validator.isWorkoutDateValid(workoutDate)){
             throw new ValidationException("Assignment validation failed!");
         }
     }

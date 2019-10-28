@@ -50,8 +50,8 @@ public class GetMembershipCommand implements Command {
     private void checkPaymentParameters(String cardNumber, String validThru, String cvv)
             throws ValidationException{
         if(!paymentValidator.isCardNumberValid(cardNumber)
-                && paymentValidator.isExpirationDateValid(validThru)
-                && paymentValidator.isCvvValid(cvv)){
+                || !paymentValidator.isExpirationDateValid(validThru)
+                || !paymentValidator.isCvvValid(cvv)){
             throw new ValidationException("Payment validation failed!");
         }
     }
