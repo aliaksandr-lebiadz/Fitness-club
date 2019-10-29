@@ -24,11 +24,11 @@ public class CommandAccessController {
             case SHOW_ORDER_PAGE_COMMAND:
             case SHOW_ORDERS_COMMAND:
             case SEND_FEEDBACK_COMMAND:
-            case CHANGE_ASSIGNMENT_COMMAND:
-            case CHANGE_ASSIGNMENT_STATUS_COMMAND:
                 return user != null && user.getRole() == UserRole.CLIENT;
 
             case SHOW_ASSIGNMENTS_COMMAND:
+            case CHANGE_ASSIGNMENT_COMMAND:
+            case CHANGE_ASSIGNMENT_STATUS_COMMAND:
                 return user != null && (user.getRole() == UserRole.CLIENT || user.getRole() == UserRole.TRAINER);
 
             default:
