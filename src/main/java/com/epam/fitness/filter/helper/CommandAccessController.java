@@ -8,22 +8,17 @@ import static com.epam.fitness.command.factory.impl.CommandFactoryImpl.*;
 public class CommandAccessController {
 
     public boolean hasAccess(String command, User user){
-        if(SHOW_HOME_PAGE_COMMAND.equals(command)){
-            return true;
-        }
-        if(user == null || command == null){
+        if(command == null){
             return false;
         }
-
-        UserRole role = user.getRole();
         switch (command){
             case SHOW_CLIENTS_COMMAND:
             case SET_USER_DISCOUNT_COMMAND:
-                return role == UserRole.ADMIN;
+                return user != null && user.getRole() == UserRole.ADMIN;
 
             case ASSIGN_NUTRITION_TYPE_COMMAND:
             case SHOW_TRAINER_CLIENTS_COMMAND:
-                return role == UserRole.TRAINER;
+                return user != null && user.getRole() == UserRole.TRAINER;
 
             case GET_MEMBERSHIP_COMMAND:
             case SHOW_ORDER_PAGE_COMMAND:
@@ -31,10 +26,10 @@ public class CommandAccessController {
             case SEND_FEEDBACK_COMMAND:
             case CHANGE_ASSIGNMENT_COMMAND:
             case CHANGE_ASSIGNMENT_STATUS_COMMAND:
-                return role == UserRole.CLIENT;
+                return user != null && user.getRole() == UserRole.CLIENT;
 
             case SHOW_ASSIGNMENTS_COMMAND:
-                return role == UserRole.CLIENT || role == UserRole.TRAINER;
+                return user != null && (user.getRole() == UserRole.CLIENT || user.getRole() == UserRole.TRAINER);
 
             default:
                 return true;

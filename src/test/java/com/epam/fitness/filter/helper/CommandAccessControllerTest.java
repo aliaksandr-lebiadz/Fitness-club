@@ -99,17 +99,6 @@ public class CommandAccessControllerTest {
     }
 
     @Test
-    public void testHasAccessShouldReturnFalseWhenNullUserSupplied(){
-        //given
-
-        //when
-        boolean actual = controller.hasAccess(anyString(), null);
-
-        //then
-        Assert.assertFalse(actual);
-    }
-
-    @Test
     public void testHasAccessShouldReturnTrueWhenNullUserAndShowHomePageCommandSupplied(){
         //given
 
