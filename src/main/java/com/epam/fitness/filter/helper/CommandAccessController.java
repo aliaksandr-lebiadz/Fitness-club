@@ -8,6 +8,9 @@ import static com.epam.fitness.command.factory.impl.CommandFactoryImpl.*;
 public class CommandAccessController {
 
     public boolean hasAccess(String command, User user){
+        if(SHOW_HOME_PAGE_COMMAND.equals(command)){
+            return true;
+        }
         if(user == null || command == null){
             return false;
         }
