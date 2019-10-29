@@ -37,6 +37,7 @@
                 <input type="submit" id="login-button" value="${button}"/>
                 <c:if test="${sessionScope.login_fail eq true}">
                     <span id="login-fail">${fail_message}</span>
+                    <c:remove var="login_fail" scope="session"/>
                 </c:if>
             </form>
         </div>
