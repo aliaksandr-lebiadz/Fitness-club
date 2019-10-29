@@ -66,7 +66,7 @@
                 <i class="fa fa-cc-mastercard fa-2x purchase-icon"></i>
                 <label for="card-number-input"></label>
                 <input type="text" name="card_number" id="card-number-input" placeholder="${card_number}"
-                       pattern="\d{16}" required/>
+                       pattern="\d{16}" required autofocus/>
                 <label for="valid-thru-input"></label>
                 <input type="text" name="valid_thru" id="valid-thru-input" placeholder="${validity}"
                        pattern="((0[1-9])|(1[0-2]))/\d{2}" required/>
