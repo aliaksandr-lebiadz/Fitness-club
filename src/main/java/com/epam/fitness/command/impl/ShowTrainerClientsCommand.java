@@ -9,7 +9,6 @@ import com.epam.fitness.exception.ServiceException;
 import com.epam.fitness.service.api.ExerciseService;
 import com.epam.fitness.service.api.OrderService;
 import com.epam.fitness.service.api.UserService;
-import com.epam.fitness.utils.CurrentPageGetter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +17,7 @@ import java.util.List;
 
 public class ShowTrainerClientsCommand implements Command {
 
+    private static final String TRAINER_CLIENTS_URL = "/trainerClients";
     private static final String USER_ATTRIBUTE = "user";
     private static final String CLIENTS_ATTRIBUTE = "clients";
     private static final String EXERCISES_ATTRIBUTE = "exercises";
@@ -51,7 +51,6 @@ public class ShowTrainerClientsCommand implements Command {
         }
         List<User> clients = userService.findUsersByTrainerId(trainerId);
         request.setAttribute(CLIENTS_ATTRIBUTE, clients);
-        String currentPage = CurrentPageGetter.getCurrentPage(request);
-        return CommandResult.forward(currentPage);
+        return CommandResult.forward(TRAINER_CLIENTS_URL);
     }
 }
