@@ -25,9 +25,9 @@ public class CommandFactoryImpl implements CommandFactory {
 
     private static final String LOGIN_COMMAND = "login";
     private static final String LOG_OUT_COMMAND = "logOut";
-    private static final String SHOW_HOME_PAGE_COMMAND = "showHomePage";
     private static final String SET_LOCALE_COMMAND = "setLocale";
 
+    public static final String SHOW_HOME_PAGE_COMMAND = "showHomePage";
     public static final String SHOW_ORDER_PAGE_COMMAND = "showOrderPage";
     public static final String GET_MEMBERSHIP_COMMAND = "getMembership";
     public static final String SHOW_ORDERS_COMMAND = "showOrders";
