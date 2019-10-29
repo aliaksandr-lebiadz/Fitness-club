@@ -6,10 +6,7 @@ import com.epam.fitness.filter.AbstractFilter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(filterName = "trainerFilter", urlPatterns = {"/trainerClients"})
@@ -20,7 +17,7 @@ public class TrainerFilter extends AbstractFilter {
             throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         User user = getUser(request);
-        if(user == null || user.getRole() != UserRole.TRAINER){
+        if(user != null && user.getRole() != UserRole.TRAINER){
             throw new ServletException("Unauthorized access!");
         }
         chain.doFilter(servletRequest, servletResponse);

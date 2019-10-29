@@ -7,10 +7,9 @@ import com.epam.fitness.filter.AbstractFilter;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName = "controllerFilter", urlPatterns = {"/controller?command="})
+@WebFilter(filterName = "controllerFilter", urlPatterns = {"/controller"})
 public class ControllerFilter extends AbstractFilter {
 
     private static final String COMMAND_PARAMETER = "command";
