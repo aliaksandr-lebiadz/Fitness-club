@@ -17,6 +17,7 @@ public class CommandAccessControllerTest {
     private static final User CLIENT = mock(User.class);
     private static final User TRAINER = mock(User.class);
     private static final String ADMIN_COMMAND = "setUserDiscount";
+    private static final String SHOW_HOME_PAGE_COMMAND = "showHomePage";
 
     private CommandAccessController controller = new CommandAccessController();
 
@@ -106,6 +107,17 @@ public class CommandAccessControllerTest {
 
         //then
         Assert.assertFalse(actual);
+    }
+
+    @Test
+    public void testHasAccessShouldReturnTrueWhenNullUserAndShowHomePageCommandSupplied(){
+        //given
+
+        //when
+        boolean actual = controller.hasAccess(SHOW_HOME_PAGE_COMMAND, null);
+
+        //then
+        Assert.assertTrue(actual);
     }
 
     @Test
