@@ -135,9 +135,9 @@
                         </select>
                     </div>
                     <label for="amount-of-sets">${amount_of_sets}</label>
-                    <input type="number" name="amount_of_sets" id="amount-of-sets" min="1" required>
+                    <input type="number" name="amount_of_sets" id="amount-of-sets" min="1" max="100" required>
                     <label for="amount-of-reps">${amount_of_reps}</label>
-                    <input type="number" name="amount_of_reps" id="amount-of-reps" min="1" required>
+                    <input type="number" name="amount_of_reps" id="amount-of-reps" min="1" max="100" required>
                     <input type="hidden" name="assignment_id" class="hidden-id"/>
                     <input type="submit" class="custom-button" id="add-assignment-button" value="${change_button}"/>
                 </form>
