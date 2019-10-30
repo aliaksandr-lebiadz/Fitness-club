@@ -10,15 +10,17 @@ public class AssignmentValidatorImpl implements AssignmentValidator {
 
     private static final int MIN_AMOUNT_OF_REPS = 1;
     private static final int MIN_AMOUNT_OF_SETS = 1;
+    private static final int MAX_AMOUNT_OF_REPS = 100;
+    private static final int MAX_AMOUNT_OF_SETS = 100;
 
     @Override
     public boolean isAmountOfRepsValid(int amount){
-        return amount >= MIN_AMOUNT_OF_REPS;
+        return amount >= MIN_AMOUNT_OF_REPS && amount <= MAX_AMOUNT_OF_REPS;
     }
 
     @Override
     public boolean isAmountOfSetsValid(int amount){
-        return amount >= MIN_AMOUNT_OF_SETS;
+        return amount >= MIN_AMOUNT_OF_SETS && amount <= MAX_AMOUNT_OF_SETS;
     }
 
     @Override
