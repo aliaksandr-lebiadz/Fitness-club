@@ -13,20 +13,32 @@ public class AssignmentValidatorImplTest {
     private static final int VALID_AMOUNT = 5;
     private static final int NEGATIVE_AMOUNT = -2;
     private static final int ZERO_AMOUNT = 0;
+    private static final int LARGE_AMOUNT = 110;
 
     private AssignmentValidator validator = new AssignmentValidatorImpl();
 
-    /* testing isAmountValid method */
+    /* testing isAmountOfSetsValid method */
 
     @Test
-    public void testIsAmountOfRepsValidShouldReturnTrueWhenValidAmountOfRepsSupplied(){
+    public void testIsAmountOfSetsValidShouldReturnFalseWhenLargeAmountOfSetsSupplied(){
         //given
 
         //when
-        boolean actual = validator.isAmountOfRepsValid(VALID_AMOUNT);
+        boolean actual = validator.isAmountOfSetsValid(LARGE_AMOUNT);
 
         //then
-        Assert.assertTrue(actual);
+        Assert.assertFalse(actual);
+    }
+
+    @Test
+    public void testIsAmountOfSetsValidShouldReturnFalseWhenZeroAmountSupplied(){
+        //given
+
+        //when
+        boolean actual = validator.isAmountOfSetsValid(ZERO_AMOUNT);
+
+        //then
+        Assert.assertFalse(actual);
     }
 
     @Test
@@ -41,6 +53,19 @@ public class AssignmentValidatorImplTest {
     }
 
     @Test
+    public void testIsAmountOfSetsValidShouldReturnFalseWhenNegativeAmountSupplied(){
+        //given
+
+        //when
+        boolean actual = validator.isAmountOfSetsValid(NEGATIVE_AMOUNT);
+
+        //then
+        Assert.assertFalse(actual);
+    }
+
+    /* testing isAmountOfRepsValid method */
+
+    @Test
     public void testIsAmountOfRepsValidShouldReturnFalseWhenNegativeAmountSupplied(){
         //given
 
@@ -52,11 +77,33 @@ public class AssignmentValidatorImplTest {
     }
 
     @Test
-    public void testIsAmountOfSetsValidShouldReturnFalseWhenZeroAmountSupplied(){
+    public void testIsAmountOfRepsValidShouldReturnTrueWhenValidAmountOfRepsSupplied(){
         //given
 
         //when
-        boolean actual = validator.isAmountOfSetsValid(ZERO_AMOUNT);
+        boolean actual = validator.isAmountOfRepsValid(VALID_AMOUNT);
+
+        //then
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testIsAmountOfRepsValidShouldReturnFalseWhenZeroAmountOfRepsSupplied(){
+        //given
+
+        //when
+        boolean actual = validator.isAmountOfRepsValid(ZERO_AMOUNT);
+
+        //then
+        Assert.assertFalse(actual);
+    }
+
+    @Test
+    public void testIsAmountOfRepsValidShouldReturnFalseWhenLargeAmountOfRepsSupplied(){
+        //given
+
+        //when
+        boolean actual = validator.isAmountOfRepsValid(LARGE_AMOUNT);
 
         //then
         Assert.assertFalse(actual);
