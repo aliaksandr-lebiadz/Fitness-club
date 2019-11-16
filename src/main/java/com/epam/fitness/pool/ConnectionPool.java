@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * <p>Provides an access to the created connections.
@@ -21,6 +23,7 @@ public class ConnectionPool {
 
     private static ConnectionPool instance = new ConnectionPool();
     private static final boolean SEMAPHORE_FAIR = true;
+    private static final Lock LOCK = new ReentrantLock();
 
     private Queue<ProxyConnection> connections = new LinkedList<>();
     private List<ProxyConnection> givenConnections = new ArrayList<>();
@@ -60,6 +63,7 @@ public class ConnectionPool {
 
         try{
             if(semaphore.tryAcquire(maxWaitInSeconds, TimeUnit.SECONDS)){
+                LOCK.lock();
                 ProxyConnection givenConnection = connections.poll();
                 givenConnections.add(givenConnection);
                 return givenConnection;
@@ -68,6 +72,8 @@ public class ConnectionPool {
             }
         } catch (InterruptedException ex){
             throw new ConnectionPoolException(ex.getMessage(), ex);
+        } finally{
+            LOCK.unlock();
         }
     }
 
