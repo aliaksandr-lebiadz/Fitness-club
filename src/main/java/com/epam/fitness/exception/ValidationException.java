@@ -2,7 +2,7 @@ package com.epam.fitness.exception;
 
 public class ValidationException extends Exception{
 
-    public ValidationException() { }
+    public ValidationException() {}
 
     public ValidationException(String message) {
         super(message);

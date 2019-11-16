@@ -2,8 +2,7 @@ package com.epam.fitness.exception;
 
 public class ConnectionPoolException extends Exception{
 
-    public ConnectionPoolException() {
-    }
+    public ConnectionPoolException() {}
 
     public ConnectionPoolException(String message) {
         super(message);
