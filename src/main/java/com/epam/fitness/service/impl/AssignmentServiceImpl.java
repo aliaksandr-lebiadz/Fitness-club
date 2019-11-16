@@ -48,12 +48,9 @@ public class AssignmentServiceImpl implements AssignmentService {
     public NutritionType getNutritionTypeByOrderId(int orderId) throws ServiceException {
         try{
             Optional<Order> orderOptional = orderDao.findById(orderId);
-            if(orderOptional.isPresent()){
-                Order order = orderOptional.get();
-                return order.getNutritionType();
-            } else{
-                throw new ServiceException("Order with the id " + orderId + " isn't found!");
-            }
+            Order order = orderOptional
+                    .orElseThrow(() -> new ServiceException("Order with the id " + orderId + " isn't found!"));
+            return order.getNutritionType();
         } catch (DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
         }
@@ -62,14 +59,11 @@ public class AssignmentServiceImpl implements AssignmentService {
     @Override
     public void changeStatusById(int id, AssignmentStatus status) throws ServiceException {
         try{
-            Optional<Assignment> optionalAssignment = assigmentDao.findById(id);
-            if(optionalAssignment.isPresent()){
-                Assignment assignment = optionalAssignment.get();
-                assignment.setStatus(status);
-                assigmentDao.save(assignment);
-            } else{
-                throw new ServiceException("Assignment with the id " + id + " isn't found!");
-            }
+            Optional<Assignment> assignmentOptional = assigmentDao.findById(id);
+            Assignment assignment = assignmentOptional
+                    .orElseThrow(() -> new ServiceException("Assignment with the id " + id + " isn't found!"));
+            assignment.setStatus(status);
+            assigmentDao.save(assignment);
         } catch (DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
         }
@@ -79,9 +73,9 @@ public class AssignmentServiceImpl implements AssignmentService {
     public void updateById(int id, Exercise exercise, int amountOfSets, int amountOfReps, Date workoutDate)
             throws ServiceException {
         try{
-            Optional<Assignment> optionalAssignment = assigmentDao.findById(id);
-            if(optionalAssignment.isPresent()){
-                Assignment assignment = optionalAssignment.get();
+            Optional<Assignment> assignmentOptional = assigmentDao.findById(id);
+            if(assignmentOptional.isPresent()){
+                Assignment assignment = assignmentOptional.get();
                 assignment.setExercise(exercise);
                 assignment.setAmountOfSets(amountOfSets);
                 assignment.setAmountOfReps(amountOfReps);

@@ -32,21 +32,17 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void create(User client, int membershipId) throws ServiceException {
         try {
-            Optional<GymMembership> optionalGymMembership = gymMembershipDao.findById(membershipId);
-            if(optionalGymMembership.isPresent()){
-                GymMembership gymMembership = optionalGymMembership.get();
-                int monthsAmount = gymMembership.getMonthsAmount();
-                BigDecimal initialPrice = gymMembership.getPrice();
-                int clientDiscount = client.getDiscount();
-                BigDecimal totalPrice = utils.calculatePriceWithDiscount(initialPrice, clientDiscount);
-                Date endDate = utils.getDateAfterMonthsAmount(monthsAmount);
-                int clientId = client.getId();
-                Order order = new Order(clientId, endDate, totalPrice);
-                orderDao.save(order);
-            } else{
-                throw new ServiceException("Gym membership with the id " + membershipId + " isn't found!");
-            }
-
+            Optional<GymMembership> gymMembershipOptional = gymMembershipDao.findById(membershipId);
+            GymMembership gymMembership = gymMembershipOptional
+                    .orElseThrow(() -> new ServiceException("Gym membership with the id " + membershipId + " isn't found!"));
+            int monthsAmount = gymMembership.getMonthsAmount();
+            BigDecimal initialPrice = gymMembership.getPrice();
+            int clientDiscount = client.getDiscount();
+            BigDecimal totalPrice = utils.calculatePriceWithDiscount(initialPrice, clientDiscount);
+            Date endDate = utils.getDateAfterMonthsAmount(monthsAmount);
+            int clientId = client.getId();
+            Order order = new Order(clientId, endDate, totalPrice);
+            orderDao.save(order);
         } catch(DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
         }
@@ -74,13 +70,10 @@ public class OrderServiceImpl implements OrderService {
     public void updateFeedbackById(int id, String feedback) throws ServiceException {
         try{
             Optional<Order> orderOptional = orderDao.findById(id);
-            if(orderOptional.isPresent()){
-                Order order = orderOptional.get();
-                order.setFeedback(feedback);
-                orderDao.save(order);
-            } else{
-                throw new ServiceException("Order with id " + id + " not found!");
-            }
+            Order order = orderOptional
+                    .orElseThrow(() -> new ServiceException("Order with id " + id + " not found!"));
+            order.setFeedback(feedback);
+            orderDao.save(order);
         } catch (DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
         }
@@ -90,13 +83,10 @@ public class OrderServiceImpl implements OrderService {
     public void updateNutritionById(int id, NutritionType nutritionType) throws ServiceException {
         try{
             Optional<Order> orderOptional = orderDao.findById(id);
-            if(orderOptional.isPresent()){
-                Order order = orderOptional.get();
-                order.setNutritionType(nutritionType);
-                orderDao.save(order);
-            } else{
-                throw new ServiceException("Order with id " + id + " not found!");
-            }
+            Order order = orderOptional
+                    .orElseThrow(() -> new ServiceException("Order with id " + id + " not found!"));
+            order.setNutritionType(nutritionType);
+            orderDao.save(order);
         } catch (DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
         }

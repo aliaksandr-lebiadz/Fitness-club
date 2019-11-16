@@ -50,15 +50,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void setUserDiscount(int id, int discount) throws ServiceException {
         try{
-            Optional<User> optionalUser = userDao.findById(id);
-            if(optionalUser.isPresent()){
-                User user = optionalUser.get();
-                user.setDiscount(discount);
-                userDao.save(user);
-            } else{
-                throw new ServiceException("User with the id " + id + " isn't found!");
-            }
-
+            Optional<User> userOptional = userDao.findById(id);
+            User user = userOptional
+                    .orElseThrow(() -> new ServiceException("User with the id " + id + " isn't found!"));
+            user.setDiscount(discount);
+            userDao.save(user);
         } catch (DaoException ex){
             throw new ServiceException(ex.getMessage(), ex);
         }
