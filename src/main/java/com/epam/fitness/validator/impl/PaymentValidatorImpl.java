@@ -2,7 +2,6 @@ package com.epam.fitness.validator.impl;
 
 import com.epam.fitness.validator.api.PaymentValidator;
 import org.apache.commons.lang.time.DateUtils;
-import org.apache.logging.log4j.LogManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,14 +32,17 @@ public class PaymentValidatorImpl implements PaymentValidator {
     }
 
     private boolean isCardActive(String expirationDateStr){
+        Date expirationDate = formatDate(expirationDateStr);
+        Date now = new Date();
+        Date truncatedDate = DateUtils.truncate(now, Calendar.MONTH);
+        return !expirationDate.before(truncatedDate);
+    }
+
+    private Date formatDate(String dateToFormat){
         try{
-            Date expirationDate = DATE_FORMAT.parse(expirationDateStr);
-            Date now = new Date();
-            Date truncatedDate = DateUtils.truncate(now, Calendar.MONTH);
-            return !expirationDate.before(truncatedDate);
+            return DATE_FORMAT.parse(dateToFormat);
         } catch (ParseException ex){
-            LogManager.getLogger(PaymentValidatorImpl.class).info("exception");
-            return false;
+            throw new IllegalArgumentException(ex.getMessage(), ex);
         }
     }
 }
