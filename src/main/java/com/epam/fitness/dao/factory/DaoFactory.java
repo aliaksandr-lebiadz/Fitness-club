@@ -3,7 +3,7 @@ package com.epam.fitness.dao.factory;
 import com.epam.fitness.dao.api.*;
 
 /**
- * Factory for the dao creation
+ * <p>A factory interface for creation of the dao classes.</p>
  */
 public interface DaoFactory {
 

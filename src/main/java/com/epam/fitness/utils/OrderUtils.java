@@ -5,10 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * <p>Utils class for operations, related with an
+ * <p>An utils class for operations, related with a
  * {@link com.epam.fitness.entity.order.Order} entity.</p>
- *
- * @author Alexandr Lebed
  */
 public class OrderUtils {
 
@@ -18,7 +16,7 @@ public class OrderUtils {
     private static final double MAX_DISCOUNT = 100.0;
 
     /**
-     * <p>Calculate a {@link Date} after the number of months supplied.</p>
+     * <p>Calculates a {@link Date} after the supplied number of months.</p>
      *
      * @param monthsAmount a number of months
      * @return the {@link Date} after the supplied months amount

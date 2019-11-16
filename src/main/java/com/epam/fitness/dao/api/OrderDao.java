@@ -8,6 +8,8 @@ import java.util.List;
 /**
  * <p>An interface specified for an order entity
  * to provide an access to it.</p>
+ *
+ * @see Order
  */
 public interface OrderDao extends Dao<Order> {
 

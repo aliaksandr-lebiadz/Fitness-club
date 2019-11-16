@@ -10,7 +10,6 @@ import java.sql.SQLException;
 /**
  * <p>Builds an instance of the {@link GymMembership} class.</p>
  *
- * @author Alexandr Lebed
  * @see Builder
  * @see GymMembership
  */

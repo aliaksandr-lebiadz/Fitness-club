@@ -12,7 +12,6 @@ import java.util.Date;
 /**
  * <p>Builds an instance of the {@link Order} class.</p>
  *
- * @author Alexandr Lebed
  * @see Builder
  * @see Order
  */

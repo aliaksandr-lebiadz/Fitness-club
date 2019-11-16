@@ -8,7 +8,9 @@ import java.sql.Connection;
 
 /**
  * <p>An implementation of the exercise dao interface to provide
- * an access to the exercise entity in the sql database.</p>
+ * an access to the exercise entity in the MySql database.</p>
+ *
+ * @see Exercise
  */
 public class ExerciseDaoImpl extends AbstractDao<Exercise> implements ExerciseDao {
 

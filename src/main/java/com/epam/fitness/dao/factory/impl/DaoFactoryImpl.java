@@ -8,8 +8,8 @@ import com.epam.fitness.dao.impl.*;
 import java.sql.Connection;
 
 /**
- * The implementation of the dao factory specified
- * in the creation of sql-oriented dao classes
+ * </p>An implementation of the dao factory specified
+ * in the creation of MySql-oriented dao classes.</p>
  */
 public class DaoFactoryImpl implements DaoFactory {
 

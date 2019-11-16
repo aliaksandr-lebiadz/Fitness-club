@@ -12,8 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * <p>An implementation of the assignments dao interface to provide
- * an access to the assignment entity in the sql database.</p>
+ * <p>An implementation of the assignment dao interface to provide
+ * an access to the assignment entity in the MySql database.</p>
+ *
+ * @see Assignment
  */
 public class AssignmentDaoImpl extends AbstractDao<Assignment> implements AssignmentDao {
 

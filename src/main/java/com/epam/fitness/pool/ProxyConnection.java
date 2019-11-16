@@ -16,7 +16,6 @@ import java.util.concurrent.Executor;
  *
  * <p>To really close the proxy connection, the method {@link #terminate()} should be invoked.</p>
  *
- * @author Alexandr Lebed
  * @see java.sql.Connection
  * @see ConnectionPool
  */

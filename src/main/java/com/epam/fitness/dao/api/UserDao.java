@@ -9,6 +9,8 @@ import java.util.Optional;
 /**
  * <p>An interface specified for an user entity to
  * provide an access to it.</p>
+ *
+ * @see User
  */
 public interface UserDao extends Dao<User> {
 

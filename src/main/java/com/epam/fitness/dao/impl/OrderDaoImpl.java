@@ -11,7 +11,9 @@ import java.util.List;
 
 /**
  * <p>An implementation of the order dao interface to provide access
- * to the order entity in the sql database.</p>
+ * to the order entity in the MySql database.</p>
+ *
+ * @see Order
  */
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 

@@ -12,7 +12,6 @@ import java.util.Date;
 /**
  * <p>Builds an instance of the {@link Assignment} class.</p>
  *
- * @author Alexandr Lebed
  * @see Builder
  * @see Assignment
  */

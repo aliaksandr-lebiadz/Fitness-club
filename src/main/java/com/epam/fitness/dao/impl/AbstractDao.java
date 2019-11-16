@@ -13,6 +13,10 @@ import java.util.Optional;
 /**
  * <p>An abstract class with some implemented methods from the
  * basic dao interface and some useful methods for other dao classes.</p>
+ *
+ * @param <T> a class, which implements {@link Identifiable} interface
+ * @see Identifiable
+ * @see Dao
  */
 public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
 

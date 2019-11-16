@@ -8,6 +8,9 @@ import java.util.Optional;
 
 /**
  * <p>A basic interface for all dao classes.</p>
+ *
+ * @param <T> a class, which implements {@link Identifiable} interface
+ * @see Identifiable
  */
 public interface Dao<T extends Identifiable> {
 

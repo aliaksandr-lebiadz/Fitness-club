@@ -12,7 +12,9 @@ import java.util.Optional;
 
 /**
  * <p>An implementation of the user dao interface to
- * provide access to the user entity in the sql database.</p>
+ * provide access to the user entity in the MySql database.</p>
+ *
+ * @see User
  */
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 

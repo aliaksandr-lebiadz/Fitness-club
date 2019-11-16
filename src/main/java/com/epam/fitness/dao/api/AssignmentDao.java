@@ -4,11 +4,12 @@ import com.epam.fitness.exception.DaoException;
 import com.epam.fitness.entity.assignment.Assignment;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * <p>An interface specified for an assignment
  * entity to provide an access to it.</p>
+ *
+ * @see Assignment
  */
 public interface AssignmentDao extends Dao<Assignment>{
 
