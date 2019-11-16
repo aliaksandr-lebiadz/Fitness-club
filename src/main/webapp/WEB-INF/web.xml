@@ -6,6 +6,10 @@
 
     <display-name>Fitness club</display-name>
 
+    <listener>
+        <listener-class>com.epam.fitness.ContextListener</listener-class>
+    </listener>
+
     <!--Login page-->
     <servlet>
         <servlet-name>login</servlet-name>
